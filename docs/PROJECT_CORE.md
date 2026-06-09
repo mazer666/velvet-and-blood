@@ -6,11 +6,11 @@
 
 ## Genre
 
-Occult narrative RPG with investigation, social pressure, paper trails, grotesque comedy, and supernatural transformation.
+Occult narrative RPG with investigation, social pressure, grotesque comedy, supernatural transformation, and bureaucratic unease.
 
 ## Pitch
 
-A nameless woman wakes in a gutter behind a coffeehouse in Aurelstein, 1903. She has no clear memory, but the city appears to remember her through rumors, stains, ledgers, seals, and files. Nearby, a bloodstain refuses to dry. Her name is not typed by the player; it emerges through story, records, rumors, failures, false identities, and choices. Through choices, failures, and consequences, she may become an occult investigator, a Samtläuferin, or a vampire caught in family intrigue.
+A nameless woman wakes in a gutter behind a coffeehouse in Aurelstein, 1903. She has no clear memory. Nearby, a bloodstain refuses to dry. The scene looks like a crime scene, but it first plays as a public humiliation full of social danger, bad assumptions, and witnesses. Her name is not typed by the player; it emerges through story, rumors, failures, false identities, choices, and occasional records. Through choices, failures, and consequences, she may become an occult investigator, a Samtläuferin, or a vampire caught in family intrigue.
 
 ## Setting
 
@@ -18,7 +18,7 @@ Aurelstein is a fictional imperial city inspired by the tensions, elegance, bure
 
 ## Aurelstein Remembers in Paper
 
-Memory is administrative, social, legal, religious, and financial as well as personal or supernatural. Police reports, hospital records, debt registers, church books, inheritance papers, house records, and private dossiers may protect the player, accuse her, erase her, or invent a version of her that never existed. **Die Akte** / **The File** should eventually replace a generic quest log as the journal-investigation concept.
+Memory is administrative, social, legal, religious, and financial as well as personal or supernatural. Police reports, hospital records, debt registers, church books, inheritance papers, house records, and private dossiers may protect the player, accuse her, erase her, or invent a version of her that never existed. This should remain a setting theme and story tool, not an overused mechanic.
 
 ## Tone
 
@@ -38,7 +38,7 @@ The player is not a chosen hero. She is a suspicious survivor in a city of salon
 
 ## Player Experience
 
-Players should feel that every choice leaves a trace. Success reveals one kind of truth; failure reveals another. Every meaningful failure should change the world, the character, Die Akte, or the way others see the protagonist. The game should reward curiosity, social risk, occult suspicion, and attention to language, paperwork, seals, signatures, and missing records.
+Players should feel that every choice leaves a trace. Success reveals one kind of truth; failure reveals another. Every meaningful failure should change the world, the character, a clue, a rumor, or the way others see the protagonist. The game should reward curiosity, social risk, occult suspicion, and attention to language, gestures, witnesses, paperwork, and missing records.
 
 ## Long-Term Act Vision
 

@@ -4,7 +4,7 @@ This document defines the first draft of the character and rules direction. It i
 
 ## Core Rule Direction
 
-The game should be driven by choices, checks, consequences, inner voices, and documented traces. The player should not choose a final supernatural path during character creation. Instead, the path develops through play.
+The game should be driven by choices, checks, consequences, inner voices, and social perception. The player should not choose a final supernatural path during character creation. Instead, the path develops through play.
 
 ## Character Categories
 
@@ -51,11 +51,11 @@ The three major paths are:
 2. **Samtläuferin**: Feline shapeshifter.
 3. **Vampirin**: Vampire involved in family intrigue.
 
-The player must not choose Jägerin, Samtläuferin, or Vampirin during character creation. These paths should emerge from repeated choices, failed checks, relationships, physical changes, consequences, scenes, and contradictory records. A player should discover what the character is becoming rather than select it from a menu at the start.
+The player must not choose Jägerin, Samtläuferin, or Vampirin during character creation. These paths should emerge from repeated choices, failed checks, relationships, physical changes, consequences, scenes, and occasional contradictory records. A player should discover what the character is becoming rather than select it from a menu at the start.
 
 ## Checks and Failure
 
-Checks should produce story. Some checks should be final. Others may become repeatable if something meaningful changes, such as character attributes, story progress, new evidence, a different document, or a changed social situation. Every meaningful failure should change the world, the character, Die Akte, or the way others see the protagonist.
+Checks should produce story. Some checks should be final. Others may become repeatable if something meaningful changes, such as character attributes, story progress, new evidence, a different document, or a changed social situation. Every meaningful failure should change the world, the character, a clue, a rumor, or the way others see the protagonist.
 
 A failed check may create:
 
@@ -68,9 +68,9 @@ A failed check may create:
 - A stronger pull toward one supernatural path.
 - A police note, unpaid fine, witness statement, hospital observation, scandal sheet, or family dossier.
 
-## Akten and Dossiers
+## Records and Dossiers
 
-The game should later support **Die Akte** / **The File** as the journal and investigation system instead of a generic quest log. Records can be clues, weapons, traps, lies, protections, or forms of imprisonment. The motif should be used deliberately, not forced into every interaction.
+Aurelstein uses records as setting texture and story pressure. Documents can be clues, weapons, traps, lies, protections, or forms of imprisonment, but they should be used deliberately and sparingly. The game may later include dossier-like journal entries, but the core loop should remain choices, voices, social pressure, investigation, and consequence.
 
 Possible future examples:
 
@@ -85,7 +85,7 @@ Possible future examples:
 
 ## Tracking, Inventory, and Resources
 
-Future prototypes need documentation-friendly tracking for choices, checks, evidence, path pressure, open leads, closed leads, and dead-end prevention. Player decisions and checks should be documented so scenes can be tested for unresolved branches.
+Future prototypes need documentation-friendly tracking for choices, checks, evidence, path pressure, open leads, closed leads, and dead-end prevention. Player decisions and checks should be documented so scenes can be tested for unresolved branches. This tracking can stay behind the scenes and does not need to become an in-world file mechanic.
 
 The game will also need an inventory or resource-management concept for evidence, documents, money, favors, hunger, wounds, social debts, and other narrative resources.
 
@@ -103,4 +103,4 @@ Dialogue and text should be data-driven and ID-based so future localization and 
 
 ## Combat
 
-Combat is rare and not the core loop. Violence can exist, but the game should focus first on investigation, dialogue, pressure, hunger, fear, paperwork, and consequence.
+Combat is rare and not the core loop. Violence can exist, but the game should focus first on investigation, dialogue, pressure, shame, hunger, fear, witnesses, and consequence.

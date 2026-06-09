@@ -2,15 +2,15 @@
 
 ## 1. Narrative-First Gameplay
 
-Story, character, memory, dialogue, documents, and consequence are the core of the experience. Systems should support narrative play rather than distract from it.
+Story, character, memory, dialogue, social pressure, and consequence are the core of the experience. Systems should support narrative play rather than distract from it.
 
 ## 2. Failure as Progression
 
-Failure should not simply block the player. Every meaningful failure should change the world, the character, Die Akte, or the way others see the protagonist. Failed choices and checks may unlock consequences, comedy, clues, scars, social damage, alternate routes, hidden path progression, or new records such as police notes, unpaid fines, witness statements, medical observations, scandal sheets, and family dossiers.
+Failure should not simply block the player. Every meaningful failure should change the world, the character, a clue, a rumor, or the way others see the protagonist. Failed choices and checks may unlock consequences, comedy, clues, scars, social damage, alternate routes, hidden path progression, or occasional records such as police notes, unpaid fines, witness statements, medical observations, scandal sheets, and family dossiers.
 
 ## 3. Aurelstein Remembers in Paper
 
-Memory is also administrative, legal, religious, social, and financial. A file can be a clue, weapon, trap, lie, protection, or prison. An official stamp can be more frightening than a monster. The later journal-investigation system should be **Die Akte** / **The File**, but the motif should not be overused in every scene.
+Memory is also administrative, legal, religious, social, and financial. A file can be a clue, weapon, trap, lie, protection, or prison. An official stamp can sometimes be more frightening than a monster. This is a setting texture and story pressure, not a mechanic that must appear in every scene.
 
 ## 4. Original Occult Lore
 

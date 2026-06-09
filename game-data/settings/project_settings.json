@@ -22,7 +22,7 @@
     "originalLoreOnly": true,
     "nonCommercialOpenSource": true,
     "customPlayerNameAllowed": false,
-    "futureFileSystemConcept": true,
+    "recordsAsSettingTheme": true,
     "futureVoiceOverReadyText": true,
     "robustSaveSystemRequired": true
   }

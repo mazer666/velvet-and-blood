@@ -8,11 +8,11 @@ No final engine choice has been made yet. The project should remain flexible unt
 
 ### Phase 1: Narrative Prototype
 
-Create a text-first prototype that validates tone, choices, checks, inner voices, consequences, Die Akte concepts, and data organization.
+Create a text-first prototype that validates tone, choices, checks, inner voices, consequences, social pressure, and data organization.
 
 ### Phase 2: Browser Prototype
 
-Build a browser-playable version with a simple interface for scenes, choices, Die Akte entries, character state, saves, and localization.
+Build a browser-playable version with a simple interface for scenes, choices, journal or notes entries, character state, saves, and localization.
 
 ### Phase 3: 2.5D Hybrid Prototype
 

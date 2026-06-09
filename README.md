@@ -1,8 +1,8 @@
 # Velvet and Blood – A City That Remembers
 
-**Velvet and Blood – A City That Remembers** is an open-source occult narrative RPG set in **Aurelstein**, a fictional imperial city inspired by Vienna in 1903. The game will begin in German and will focus on choices, consequences, paper trails, social pressure, grotesque humor, and supernatural transformation.
+**Velvet and Blood – A City That Remembers** is an open-source occult narrative RPG set in **Aurelstein**, a fictional imperial city inspired by Vienna in 1903. The game will begin in German and will focus on choices, consequences, social pressure, grotesque humor, supernatural transformation, and the quiet menace of bureaucracy.
 
-The player controls a nameless woman who wakes in the gutter behind a coffeehouse with no clear memory. Near her is a bloodstain that does not dry. The city may already have records about her, but those records may contradict each other. The player should not type a custom name; her name should emerge through story, records, rumors, failures, false identities, and choices. Through choices, failures, clues, and consequences, she may develop into an occult investigator, a feline shapeshifter called a **Samtläuferin**, or a vampire entangled in family intrigue.
+The player controls a nameless woman who wakes in the gutter behind a coffeehouse with no clear memory. Near her is a bloodstain that does not dry. The scene looks like a crime scene and feels like a social catastrophe. The player should not type a custom name; her name should emerge through story, rumors, failures, false identities, choices, and occasional records. Through choices, failures, clues, and consequences, she may develop into an occult investigator, a feline shapeshifter called a **Samtläuferin**, or a vampire entangled in family intrigue.
 
 ## Current Status
 
@@ -34,9 +34,9 @@ Inspirations may inform broad creative direction: talkative inner voices, urban 
 
 ## Aurelstein Remembers in Paper
 
-Memory in Aurelstein is not only psychological or supernatural. The city remembers through seals, ledgers, police reports, birth records, debt registers, hospital files, death certificates, church books, house records, and private dossiers. An official stamp can be more frightening than a monster.
+Memory in Aurelstein is not only psychological or supernatural. The city also remembers through seals, ledgers, police reports, birth records, debt registers, hospital files, death certificates, church books, house records, and private dossiers. This is a setting pressure, not the main gameplay loop. An official stamp can sometimes be more frightening than a monster.
 
-Archives are not neutral. A file can protect, erase, accuse, invent, misclassify, resurrect, or imprison a person on paper. The future journal-investigation system should be **Die Akte** / **The File**, not a generic quest log. The file theme should be powerful but not used in every scene.
+Archives are not neutral. A file can protect, erase, accuse, invent, misclassify, resurrect, or imprison a person on paper. This motif should appear when it sharpens a scene, not as a constant mechanic or replacement for every journal idea.
 
 ## Planned Roadmap
 
@@ -64,7 +64,7 @@ Archives are not neutral. A file can protect, erase, accuse, invent, misclassify
 - Put balancing values in central settings files instead of hardcoding them.
 - Keep narrative content and dialogue in data files, not directly in code.
 - Keep German game text in localization or narrative data files.
-- Make failures interesting: a meaningful failed check should change the world, the character, Die Akte, or the way others see the protagonist.
+- Make failures interesting: a meaningful failed check should change the world, the character, a clue, a rumor, or the way others see the protagonist.
 
 ## Future Technical Trust Requirements
 

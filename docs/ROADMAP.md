@@ -16,7 +16,7 @@ Later acts are future expansion candidates, not required content for the initial
 ## Phase 1: Act 1 Narrative Prototype
 
 - Create the first playable text-first scene: “Gutter behind the coffeehouse,” where the protagonist wakes in Aurelstein in 1903 beside a bloodstain that does not dry.
-- Test German prose, multisensory scene writing, shame, confusion, social observation, grotesque humor, inner voices, choices, checks, failure consequences, and tiny hints toward all three future paths.
+- Test German prose, multisensory scene writing, shame, confusion, social observation, a crime-scene-like setup, grotesque humor, inner voices, choices, checks, failure consequences, and tiny hints toward all three future paths.
 - Keep all narrative content in data files.
 - Begin documenting player decisions, checks, consequences, and unresolved leads.
 - Design checks so some are final and others can be retried after meaningful changes.
@@ -26,12 +26,13 @@ Later acts are future expansion candidates, not required content for the initial
 - Add a minimal browser interface.
 - Display scene text and choices.
 - Track basic character state, story progress, choices, checks, and open consequences.
-- Add placeholder **Die Akte** / **The File** view, inventory, and character-sheet screens instead of a generic quest log.
+- Add placeholder journal or notes view, inventory, and character-sheet screens without overcommitting to an in-world file mechanic.
 - Support testing for dead ends so branches can reconnect cleanly.
 
 ## Phase 3: Save System and Localization
 
 - Implement a reliable save and load system with manual saves, autosaves, multiple slots, visible confirmation, savegame versioning, and protection against silent save failure.
+- Add versioning for save data.
 - Track story progress, evidence, documents, inventory, resources, and closed or open leads.
 - Expand German localization and add English translation support with stable text and dialogue identifiers for possible future voice-over.
 - Document save behavior clearly for players.
