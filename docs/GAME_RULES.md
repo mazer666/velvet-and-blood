@@ -68,6 +68,26 @@ A failed check may create:
 - A stronger pull toward one supernatural path.
 - A police note, unpaid fine, witness statement, hospital observation, scandal sheet, or family dossier.
 
+## First Frau Zwirndl Dialogue Direction
+
+The first conversation with Frau Zwirndl must not be written as a simple confession scene. Frau Zwirndl presses toward truth about Lisel's disappearance, but the protagonist genuinely does not remember what happened. The scene should preserve uncertainty: Frau Zwirndl does not fully believe the protagonist, yet she does not dismiss the possibility of real memory loss.
+
+Do not push the scene too early or too explicitly toward the vampire path. Avoid early certainty such as wrong pulse, unnatural coldness, corpse-like body, or clear undeath. Her observations should remain socially sharp and physically ambiguous, for example:
+
+- “Ist Ihnen nicht gut? Sie sehen blass aus.”
+- “Sie sehen aus, als hätte der Morgen Sie zurückgegeben und sofort bereut.”
+- “Sie haben Erde am Saum, Blut am Mundwinkel und den Blick einer Frau, die gerade versucht, sich selbst höflich nicht zu kennen.”
+
+The player should be able to answer Frau Zwirndl through six valid styles: honest confusion, inventing something out of embarrassment, deliberate lying, evasive self-protection, returning the question, or silence. None is the single correct answer. Each should alter tone, trust, inner voice reactions, available hints, and possible consequences rather than merely passing or failing the exchange.
+
+Core line for Frau Zwirndl:
+
+> “Ich will kein Geständnis. Geständnisse sind oft nur Lügen mit besserer Haltung. Ich will wissen, was wahr ist.”
+
+Possible closing direction:
+
+> “Fangen Sie bei dem an, was nicht weglaufen kann: Fleck, Knopf, Lieferzettel, Tür.”
+
 ## Records and Dossiers
 
 Aurelstein uses records as setting texture and story pressure. Documents can be clues, weapons, traps, lies, protections, or forms of imprisonment, but they should be used deliberately and sparingly. The game may later include dossier-like journal entries, but the core loop should remain choices, voices, social pressure, investigation, and consequence.
