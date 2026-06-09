@@ -32,7 +32,6 @@ Later acts are future expansion candidates, not required content for the initial
 ## Phase 3: Save System and Localization
 
 - Implement a reliable save and load system with manual saves, autosaves, multiple slots, visible confirmation, savegame versioning, and protection against silent save failure.
-- Add versioning for save data.
 - Track story progress, evidence, documents, inventory, resources, and closed or open leads.
 - Expand German localization and add English translation support with stable text and dialogue identifiers for possible future voice-over.
 - Document save behavior clearly for players.
