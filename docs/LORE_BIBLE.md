@@ -35,23 +35,39 @@ Her identity may emerge through conflicting documents, rumors, failures, false i
 
 ## Supernatural Paths
 
+**Schwellenkunst** is the broad concept for threshold-related abilities: finding, reading, crossing, blocking, owing, owning, or being claimed by doors and borders that social reality says should not matter. It should feel like a half-understood occult and social practice rather than clean public taxonomy or visible mechanics. Each path expresses Schwellenkunst differently, and early scenes should keep these expressions ambiguous.
+
+The supernatural is partially hidden in Aurelstein. Ordinary people know folk ideas such as vampires, werewolves, ghosts, fairies, kobolds, witches, revenants, and local superstition, but precise terms like **Samtläufer**, **Samtgang**, **Schwellenkunde**, and **Eintrittsrecht** are not general public knowledge. NPCs should not casually explain the full occult taxonomy.
+
 ### Jägerin
 
-An occult investigator or huntress who learns to read traces, lies, ritual leftovers, social contradictions, and inconsistencies in public files. This path should emerge through play, not character creation.
+An occult investigator or huntress who learns to read traces, lies, ritual leftovers, social contradictions, and inconsistencies in public files. Her path-specific form of Schwellenkunst is **Schwellenkunde**: knowledge of thresholds, access conditions, procedural gaps, and the traces left when someone crosses where they should not. This path should emerge through play, not character creation.
 
 ### Samtläuferin
 
-A feline shapeshifter whose nature is tied to stealth, instinct, velvet-footed movement, appetite, territory, and social performance. A Samtläuferin is not a werewolf and does not follow borrowed shapeshifter rules. This path should emerge through choices, failures, relationships, physical changes, and records.
+A feline shapeshifter whose nature is tied to stealth, instinct, velvet-footed movement, appetite, territory, and social performance. Her path-specific form of Schwellenkunst is **Samtgang**: soft-footed movement through social, physical, and territorial edges. A Samtläuferin is not a werewolf and does not follow borrowed shapeshifter rules. This path should emerge through choices, failures, relationships, physical changes, and records.
 
 ### Vampirin
 
-A vampire bound to old family politics, inheritance, hunger, documents, favors, debts, and the question of who is allowed to be remembered. This path should emerge gradually through consequences, relationships, bodily signs, and family records.
+A vampire bound to old family politics, inheritance, hunger, documents, favors, debts, and the question of who is allowed to be remembered. Her path-specific form of Schwellenkunst is **Eintrittsrecht**. It must not use the standard invitation trope as its core; it works through debt, inheritance, bloodline, obligation, possession, old promises, names, and family claims. This path should emerge gradually through consequences, relationships, bodily signs, and family records.
 
 ## Frau Zwirndl and Salon Siebte Tür
 
-**Frau Zwirndl** appears to be the old cloakroom woman of **Café Morgenstern**. This should remain a useful social disguise rather than a simple explanation of her authority. She belongs to **Salon Siebte Tür**, a Samtläufer circle with access to gossip, thresholds, service corridors, coats, keys, favors, and things overheard by people the respectable world forgets to notice.
+**Frau Zwirndl** appears to be the old and harmless cloakroom woman of **Café Morgenstern**. The age and harmlessness are part of the social disguise, not the truth of her limits. She belongs to **Salon Siebte Tür**, a Samtläufer circle with access to gossip, thresholds, service corridors, coats, keys, favors, and things overheard by people the respectable world forgets to notice.
 
 In the first conversation, Frau Zwirndl knows that **Lisel** is missing, that **FMoGH** and **Frau Chorrätin Windschütz** were involved in the night's events, and that the protagonist was somehow connected. She does not yet know whether the protagonist was culprit, victim, witness, or tool. She wants truth, not a neat confession, and she can believe two things at once: that the protagonist is hiding something, and that the protagonist may genuinely remember nothing.
+
+Lisel's blocked threshold ability should first appear connected to the bureaucratic phrase **“Bestätigung rückwärtiger Zugangsverhältnisse”**, making Mizzi and other coffeehouse staff plausibly feel responsible for a mundane access mistake. The deeper truth is worse: the protagonist's lost name was used as a false key or block against Lisel. This creates shared guilt among Mizzi, the protagonist, the Fürsorgestelle, and possibly others. Lisel's line **“Das ist nicht dein Name”** points toward this deeper truth without explaining it immediately.
+
+Frau Zwirndl herself knows her own form of threshold movement, but she should not name it early. At first, if asked about Schwellenkunst, she refuses the topic by retreating into her disguise: **“Ich bin Garderobenfrau. Ich nehme Mäntel. Keine metaphysischen Beschwerden.”** If the player presses repeatedly, she may explain her own practice partly correctly while hinting at old families, door debts, bloodlines, inheritances, superstitions, and people who read doors like crime scenes. Her claims about other threshold traditions should be colored by prejudice, rumor, and territorial Samtläufer thinking rather than treated as reliable lore. Inner voices can notice the distortion: **Die Ermittlerin** may hear missing evidence, **Die Pedantin** may object to bad categories, and **Der Zweifel** may recognize that Zwirndl is protecting a border of her own. Detecting this bias should be rewarded later with an archive note, an extra dialogue option, or inner-voice resonance.
+
+## Lisel, Mizzi, and the Door Paper
+
+**Lisel** is a tooth-gapped street girl under the protection of Salon Siebte Tür. She can find doors that officially do not exist and sometimes knows true names without understanding why that is dangerous. She was taken by the Fürsorgestelle. Her last early remembered sentence is **“Das ist nicht dein Name.”** A stronger accusation belongs later and should not be used in the opening.
+
+**Mizzi** is a waitress at Café Morgenstern, a secret witness, and partly responsible without being evil. She signed **“Bestätigung rückwärtiger Zugangsverhältnisse”**, a document that did not name Lisel but described a rear access, door, or place. This made a protected place visible to the city and allowed the Fürsorgestelle to act. Mizzi believes she may be guilty because she signed it.
+
+**Frau Chorrätin Windschütz** comes from the **Fürsorgestelle für Minderjährige ohne gesicherten Hausstand** (**FMoGH**), usually called **die Fürsorgestelle**. She is calm, polite, official, and frighteningly convinced of her own correctness. She wears a grey or dove-grey suit, very clean gloves, a small FMoGH emblem, and carries a dark leather folder. She says **“Minderjährige”** more readily than **“Kind”** and uses words like **“Obhut”**, **“Überstellung”**, and **“Zugangsverhältnisse”**.
 
 ## Samtläufer Salons
 
