@@ -96,6 +96,189 @@ Möglicher Gesprächsausgang:
 
 > “Fangen Sie bei dem an, was nicht weglaufen kann: Fleck, Knopf, Lieferzettel, Tür.”
 
+
+## Spielbarer Mini-Loop nach Frau Zwirndl: Hof untersuchen
+
+**Ziel:** Nach Frau Zwirndls erstem Gespräch darf die Spielerin den Rinnstein und Hinterhof untersuchen. Der Loop löst das Rätsel nicht. Er sammelt kleine, widersprüchliche, peinliche, komische und beunruhigende Hinweise. Fehlschläge erzeugen Hinweise, Spuren, Gerüchte oder Würdeverlust statt Sackgassen.
+
+**Struktur-Stub:**
+
+- [ ] Mindestens drei Hinweise sammeln, bevor die Szene sinnvoll zu Frau Zwirndl zurückführt oder weitergeht.
+- [ ] Jeder Hinweis kann mehrere Pfade andeuten: **Jägerin**, **Samtläuferin**, **Vampirin**. Keine Deutung darf hier endgültig werden.
+- [ ] Frau Zwirndl kann nach drei Hinweisen sagen: “Drei Hinweise. Das ist in Aurelstein fast schon eine Persönlichkeit.”
+- [ ] Antwortstil aus dem Gespräch bleibt wirksam: ehrliche Verwirrung, beschämtes Erfinden, bewusstes Lügen, ausweichender Selbstschutz, Gegenfrage oder Schweigen färben Beschreibungen, innere Stimmen und spätere Reaktionen.
+
+### Primäre Untersuchungsobjekte
+
+#### 1. Blutfleck
+
+- [ ] Der Fleck trocknet nicht, obwohl der Hofzug und die Kohleasche alles andere stumpf machen.
+- [ ] Er ist zu rund, zu ordentlich, beinahe abgelegt statt vergossen.
+- [ ] Er ist kein eindeutiger Vampirhinweis: Er kann Tatort, Köder, Amtsschlamperei, Ritualrest, Unfall, Tierlogik oder etwas ganz anderes bedeuten.
+- [ ] Innere Stimmen:
+  - **Die Ermittlerin**: “Zu rund. Nicht gespritzt, nicht gewischt. Eher platziert als passiert.”
+  - **Die Hungrige**: “Es riecht nach Antwort. Das ist nicht dasselbe wie Nahrung.”
+  - **Die Dame**: “Wenn Blut schon eine Form annimmt, sollte es wenigstens eine weniger kompromittierende wählen.”
+- [ ] Fehlschlag: Du rutschst aus, kniest in Seifenwasser, Kaffeesatz oder Schlimmerem und entdeckst gerade dadurch, dass der Fleck den Schmutz nicht annimmt.
+
+#### 2. Messingknopf
+
+- [ ] Der Knopf gehört nicht zu deinem Kleid; Farbe, Gewicht und Fadenrest widersprechen dem Stoff.
+- [ ] Auf der Rückseite kann ein winziges Emblem oder Kürzel stehen: **FMoGH**.
+- [ ] **FMoGH** steht für **“Fürsorgestelle für Minderjährige ohne gesicherten Hausstand”**; im Alltag sagt fast jeder nur **“die Fürsorgestelle”**.
+- [ ] Der Knopf könnte von einem grauen Mantel oder einer amtlich wirkenden Uniform stammen.
+- [ ] Optional: Die Katze stößt ihn unter der Regentonne hervor oder setzt sich exakt darauf.
+
+#### 3. Lieferzettel
+
+- [ ] Er wirkt banal: Kaffee, Milch, Kohle, Brot; Preise, Flecken, schlechte Handschrift.
+- [ ] Zwischen den Lieferposten steht ein Teilvermerk oder Stempel der Fürsorgestelle, bürokratisch und absurd statt magisch.
+- [ ] Mögliche Fragmente:
+  - “FMoGH — Sichtung erfolgt”
+  - Teilunterschrift: “… Windschütz”
+  - “Minderjährige Hinterhofnutzung: vorläufig ungeklärt”
+  - “Bestätigung rückwärtiger Zugangsverhältnisse”
+- [ ] Der Zettel soll wie eine peinliche Aktennotiz wirken, die versehentlich in den Morgen geraten ist.
+
+#### 4. Kellertür
+
+- [ ] Die Tür sieht gewöhnlich aus: feuchtes Holz, rostiger Griff, schlechte Farbe. Trotzdem stimmt ihre Lage nicht.
+- [ ] Auf einem nahen Lieferplan oder einer Skizze fehlt sie möglicherweise.
+- [ ] Sie deutet leise auf **Schwellenkunst**, ohne zu verraten, welche spätere Form greift: **Schwellenkunde** (Jägerin), **Samtgang** (Samtläuferin) oder **Eintrittsrecht** (Vampirin).
+- [ ] An der Oberfläche wirkt Lisels blockierte Fähigkeit zunächst wie ein Problem der **“Bestätigung rückwärtiger Zugangsverhältnisse”**; dadurch können Mizzi, Lieferanten oder Hauspersonal plausibel glauben, sie hätten eine zuständige Tür, Marke oder Liste falsch behandelt.
+- [ ] Tieferer Wahrheitsschatten, noch nicht aussprechen: Dein verlorener Name wurde als falscher Schlüssel oder Sperrriegel gegen Lisel benutzt.
+- [ ] Fehlschlag beim Öffnen oder Prüfen bleibt produktiv: ein Kinderband, eine Garderobenmarke oder eine versteckte Kratzspur wird sichtbar.
+
+#### 5. Eigene Taschen
+
+- [ ] Keine klare Identität, kein verlässlicher Name, kein sauberer Ausweis.
+- [ ] Mögliche Inhalte:
+  - verbogene Haarnadel
+  - namenlose Quittung
+  - Stück Zucker
+  - Papierfetzen mit dem Wort “freiwillig”
+  - kleines Lisel-Objekt: Murmel, Band oder Garderobenmarke
+- [ ] Der Taschenfund darf leise auf Lisels spätere Zeile vorausweisen: “Das ist nicht dein Name.” Noch keine Erklärung.
+- [ ] Ton: komisch, traurig und beunruhigend zugleich; der Inhalt wirkt wie das Inventar einer Person, die gerade als Beweisstück angelegt wurde.
+
+### Optionale Stützelemente
+
+- [ ] Zerrissenes Kleid: beweist nichts, widerspricht aber jeder würdevollen Erklärung.
+- [ ] Dunkles Fenster oder Pfütze: zeigt ein Gesicht, das vertraut sein müsste und sich höflich weigert.
+- [ ] Katze auf der Regentonne: kann den Knopf bewegen, eine Spur blockieren oder nur urteilen.
+
+### Rückkehr zu Frau Zwirndl
+
+Nach mindestens drei Hinweisen kann Frau Zwirndl den Loop bündeln, ohne ihn zu lösen:
+
+> “Drei Hinweise. Das ist in Aurelstein fast schon eine Persönlichkeit.”
+
+Sie kann anschließend fragen, welche Spur zuerst zählt: Blut, Amt, Tür, Lisel oder die eigene Lüge. Die Szene darf andeuten, dass Schuld geteilt ist: Mizzi, du, die Fürsorgestelle und vielleicht noch jemand haben je einen harmlos wirkenden Teil getan. Niemand soll hier schon die ganze Mechanik verstehen.
+
+### Schwellenkunst-Notiz
+
+**Schwellenkunst** ist der Oberbegriff für Schwellenfähigkeiten. Die späteren Ausprägungen bleiben hier offen: **Schwellenkunde** für die Jägerin, **Samtgang** für die Samtläuferin, **Eintrittsrecht** für die Vampirin. Vampirisches Eintrittsrecht ist kein schlichtes Einladungsritual; es arbeitet über Schulden, Schuld, Erbe, Blutlinie, Verpflichtung, Besitz, alte Versprechen, Namen und Familienansprüche.
+
+Frau Zwirndl beherrscht ihre eigene Schwellenpraxis, benennt sie aber zunächst nicht. Wenn sie nach Schwellenkunst gefragt wird, verweist sie auf ihre Tarnrolle: “Ich bin Garderobenfrau. Ich nehme Mäntel. Keine metaphysischen Beschwerden.” Bei wiederholtem Nachhaken darf sie ihre Praxis halb korrekt erklären, beschreibt andere Schwellenarten aber aus Vorurteilen, Gerüchten und Revierdenken. Sie soll hier nicht beiläufig “Samtläufer”, “Jägerin” oder “Vampirin” als saubere Taxonomie aussprechen. Innere Stimmen können diese Verzerrung erkennen: **Die Ermittlerin** hört fehlende Belege, **Die Pedantin** falsche Kategorien, **Der Zweifel** eine absichtlich geschlossene Tür. Belohnung für dieses Erkennen: Akteneintrag, spätere Dialogoption oder Stimmen-Resonanz.
+
+## Anschluss-Stub: Zwirndl, Mizzi und die Garderobe
+
+Dieser Anschluss erweitert die Eröffnung nach der Hofuntersuchung. Er bleibt Stub und Dokumentation, kein Gameplay-Code. Die Szene soll nicht die volle Schwellenkunde erklären, sondern ein schlechtes Gefühl, mehrere Schuldige und brauchbare Spuren erzeugen.
+
+### Frau Zwirndls Nachfassen
+
+Frau Zwirndl ordnet die gesammelten Hinweise und bleibt dabei defensiv. Sie ist scheinbar alt und harmlos, aber nicht hilflos. Sie beantwortet Fragen über Türen nicht wie eine Dozentin, sondern wie jemand, der sein Revier nicht vor Fremden ausbreitet.
+
+- [ ] Sie darf auf alte Familien, Türschulden, Blutlinien, Erbschaften, Aberglauben und Leute anspielen, die Türen wie Tatorte lesen.
+- [ ] Sie liegt bei fremden Schwellenpraktiken absichtlich oder aus Vorurteil daneben.
+- [ ] Der Spieler kann erkennen: Sie weiß viel über ihre Türen, aber nicht über alle Türen.
+
+### Mizzis Zeuginnen-/Geständnisszene
+
+**Mizzi** ist Kellnerin, heimliche Zeugin und mitschuldig, aber nicht böse. Sie gesteht nervös und sozial ungeschickt, dass sie die **“Bestätigung rückwärtiger Zugangsverhältnisse”** unterschrieben hat. Das Papier nannte Lisel nicht; es beschrieb einen rückwärtigen Zugang, eine Tür oder eine Stelle. Dadurch wurde ein geschützter Ort für die Stadt sichtbar, und die Fürsorgestelle konnte handeln.
+
+Mizzi liefert zwei konkrete Hinweise:
+
+1. **Frau Chorrätin Windschütz** von der **Fürsorgestelle für Minderjährige ohne gesicherten Hausstand** (**FMoGH**, meist nur **die Fürsorgestelle**) war ruhig, höflich, amtlich und erschreckend überzeugt von ihrer eigenen Richtigkeit: grauer oder taubengrauer Anzug, sehr saubere Handschuhe, kleines FMoGH-Abzeichen, dunkle Ledermappe. Sie sagt lieber “Minderjährige” als “Kind” und benutzt Wörter wie “Obhut”, “Überstellung” und “Zugangsverhältnisse”. Mögliche Zeile Windschütz: “Niemand nimmt dem Kind etwas weg. Wir geben ihm eine Zuständigkeit.”
+2. Lisel konnte den Garderobenfluchtweg nicht so benutzen, wie sie es erwartete. Nicht direkt aussprechen, welche Tür sie suchte: “Mizzi sah nur, dass Lisel zwischen die Mäntel wollte. Frau Zwirndl sah, welche Tür sie meinte.”
+
+Skurriler Zusammenbruch:
+
+> Mizzi: “Ich wollte doch nur—”
+>
+> Der Dampfkessel schreit.
+>
+> **Innere Stimme optional**: “Endlich sagt hier jemand ehrlich, wie diese Stadt klingt.”
+>
+> Gast: “Fräulein! Die Sachertorte ist trocken!”
+>
+> Mizzi, weinend: “Dann begießen S’ sie mit Ihrer Enttäuschung!”
+
+### Zwirndls unfreiwillige Vorführung
+
+Unter Druck beweist Frau Zwirndl versehentlich oder widerwillig, dass die Garderobe nicht gewöhnlich ist. Sie öffnet eine Schublade kaum größer als ein Schuhkarton, greift viel zu tief hinein, verschwindet mit dem Arm bis zur Schulter, bleibt kurz mit einem Teil des Kopfes stecken, beschimpft den Inhalt und zieht eine volle Mappe heraus, die unmöglich hineingepasst haben kann.
+
+Sofortige Abwehr:
+
+- “Alte Möbel. Die verziehen sich.”
+- “Das ist keine Schwellenkunst. Das ist schlechte Tischlerei mit Benehmen.”
+
+### Garderobenskizze mit sieben Türen
+
+Die Mappe enthält eine Skizze der Garderobe des **Café Morgenstern**. Erst wirkt sie normal: Eingang, Tresen, Kleiderhaken, Spiegel, Schirmständer, Personalgang, kleine Schubladenwand. Dann fallen sieben markierte Türen auf. Nur eine oder zwei sind gewöhnlich sichtbar.
+
+Mögliche Notizen auf der Skizze:
+
+- Gästetür
+- Personaltür
+- Kellertür
+- Manteltür
+- Dienstbotentür
+- Katzentür
+- Siebte Tür
+
+Frau Zwirndl erklärt sie nicht sauber. Die Skizze soll andeuten, dass **Salon Siebte Tür** an Orte, Wege, Gewohnheiten und Schwellen gebunden ist, nicht nur an Personen. Die Manteltür darf vorhanden oder angedeutet sein, aber nicht als Lösung erklärt werden.
+
+Lisels kindische Markierung:
+
+> “Lisel war schneller”
+
+Daneben: ein kleiner grinsender Mund mit Zahnlücke. Frau Zwirndl wird kurz still und versteckt es schlecht.
+
+Mögliche Zeilen:
+
+- “Das hat sie draufgeschmiert.”
+- “Sie war nirgends oft. Sie war überall zu oft.”
+
+### Lisels blockierter Fluchtversuch
+
+Lisel ist ein zahnlückiges Straßenmädchen unter dem Schutz von **Salon Siebte Tür**. Sie findet Türen, die offiziell nicht existieren, und kennt manchmal wahre Namen, ohne zu begreifen, wie gefährlich das ist. Sie wurde von der Fürsorgestelle mitgenommen. Ihre frühe Erinnerungszeile bleibt:
+
+> “Das ist nicht dein Name.”
+
+Sichtbarer Verdacht: Mizzis unterschriebenes Zugangspapier hat den Schutzort sichtbar gemacht. Tiefere Wahrheit, nur andeuten: Dein verlorener oder weggegebener Name wurde als falscher Schlüssel oder Sperrriegel gegen Lisel benutzt.
+
+Hinweis, ohne die Manteltür direkt als Tatsache zu benennen:
+
+> “Sie griff nicht nach der sichtbaren Garderobentür. Sie griff dorthin, wo zwischen zwei Mänteln manchmal mehr Platz war, als der Raum erlaubte.”
+
+### Geteilte Schuld und Belohnungen
+
+Die Szene soll das Gefühl erzeugen, dass mehrere Leute teilweise verantwortlich sind: Mizzi unterschrieb das Zugangspapier, du hast einen Namen verloren oder weggegeben, die Fürsorgestelle handelte auf die Öffnung hin, Windschütz weiß vielleicht mehr, und der Salon hat Lisel nicht geschützt. Jede Figur darf glauben, schuldig zu sein, und gleichzeitig hoffen, dass jemand anderes schuldiger ist.
+
+Mögliche Belohnungen für das Erkennen von Zwirndls Verzerrung:
+
+- Akte: “Zwirndls Wissen hat Grenzen.”
+- Einsicht: “Die Garderobe hat sieben Wege.”
+- Spätere Dialogoption: “Sie wussten viel über Ihre Türen. Nicht über alle.”
+
+Mögliche Stimmen:
+
+- **Die Ermittlerin**: “Sie weiß, was sie tut. Sie weiß nicht, was die anderen tun. Ihre Spötteleien sind Landkarten mit fehlenden Straßen.”
+- **Die Pedantin**: “Eine Garderobe mit sieben Türen ist nicht kompliziert. Sie ist baurechtlich beleidigend.”
+- **Der Zweifel**: “Sie sagt ‘Garderobe’, meint aber Revier.”
+- **Die Freche**: “Frag, ob die Mäntel auch Mitgliedsbeiträge zahlen.”
+
 ## Platzhalter: Konsequenzen
 
 - [ ] Früher Hinweis auf den Pfad der **Jägerin**.
@@ -106,4 +289,4 @@ Möglicher Gesprächsausgang:
 - [ ] Mögliche Spur: Der Messingknopf gehört nicht zu deinem Kleid.
 - [ ] Winziger Hinweis **Jägerin**: Der Hof sieht wie ein Tatort aus, aber die Zeugen behandeln ihn wie eine Unannehmlichkeit.
 - [ ] Winziger Hinweis **Samtläuferin**: Die Katze reagiert auf dich, als hätte sie dich schon einmal gerochen.
-- [ ] Winziger Hinweis **Vampirin**: Dein Mund schmeckt nach Blut, aber dein Körper friert nicht richtig.
+- [ ] Winziger Hinweis **Vampirin**: Dein Mund schmeckt nach Blut, aber der Hinweis bleibt sozial und körperlich mehrdeutig.

@@ -16,6 +16,8 @@ Memory is also administrative, legal, religious, social, and financial. A file c
 
 The project must use original terminology, factions, mechanics, and supernatural rules. Inspiration may guide tone, but the lore must remain legally and creatively distinct. Absurd, argumentative, socially observant, grotesque, and politically sharp humor is welcome; copied characters, catchphrases, dialogue patterns, running jokes, scenes, factions, and mechanics are not.
 
+The supernatural should remain partially hidden. Ordinary people may know folk categories such as vampires, werewolves, ghosts, fairies, kobolds, witches, revenants, and local superstition, but precise terms such as **Samtläufer**, **Samtgang**, **Schwellenkunde**, and **Eintrittsrecht** are not general public knowledge and should not be casually explained by NPCs.
+
 ## 5. Minimal Combat
 
 Combat is rare and not the core loop. Most conflict should happen through investigation, conversation, pressure, hunger, bureaucracy, shame, debt, family power, and supernatural consequence.
