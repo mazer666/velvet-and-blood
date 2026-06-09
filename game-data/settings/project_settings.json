@@ -1,0 +1,29 @@
+{
+  "projectTitle": "Velvet and Blood – A City That Remembers",
+  "internalSlug": "velvet-and-blood",
+  "defaultLanguage": "de",
+  "supportedLanguages": [
+    "de",
+    "en"
+  ],
+  "fileLengthLimits": {
+    "targetMaximumLines": 400,
+    "hardMaximumLines": 600
+  },
+  "firstSceneIdentifier": "prologue_gutter_behind_cafe",
+  "currentDesignFlags": {
+    "documentationPhaseOnly": true,
+    "gameplayCodeImplemented": false,
+    "narrativePrototypeFirst": true,
+    "browserFirstPrototype": true,
+    "failureAsProgression": true,
+    "minimalCombat": true,
+    "germanFirstGameText": true,
+    "originalLoreOnly": true,
+    "nonCommercialOpenSource": true,
+    "customPlayerNameAllowed": false,
+    "futureFileSystemConcept": true,
+    "futureVoiceOverReadyText": true,
+    "robustSaveSystemRequired": true
+  }
+}
