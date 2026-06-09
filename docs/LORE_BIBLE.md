@@ -47,6 +47,12 @@ A feline shapeshifter whose nature is tied to stealth, instinct, velvet-footed m
 
 A vampire bound to old family politics, inheritance, hunger, documents, favors, debts, and the question of who is allowed to be remembered. This path should emerge gradually through consequences, relationships, bodily signs, and family records.
 
+## Frau Zwirndl and Salon Siebte Tür
+
+**Frau Zwirndl** appears to be the old cloakroom woman of **Café Morgenstern**. This should remain a useful social disguise rather than a simple explanation of her authority. She belongs to **Salon Siebte Tür**, a Samtläufer circle with access to gossip, thresholds, service corridors, coats, keys, favors, and things overheard by people the respectable world forgets to notice.
+
+In the first conversation, Frau Zwirndl knows that **Lisel** is missing, that **FMoGH** and **Frau Chorrätin Windschütz** were involved in the night's events, and that the protagonist was somehow connected. She does not yet know whether the protagonist was culprit, victim, witness, or tool. She wants truth, not a neat confession, and she can believe two things at once: that the protagonist is hiding something, and that the protagonist may genuinely remember nothing.
+
 ## Samtläufer Salons
 
 A **Salon** is the basic social unit for Samtläufer. A Salon may act like a refuge, gossip network, finishing school, den, conspiracy, or theatrical disaster depending on its members.

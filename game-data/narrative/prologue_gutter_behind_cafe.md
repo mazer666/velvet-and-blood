@@ -65,6 +65,37 @@ Fehlschläge sollen neue Wege öffnen, nicht nur Antworten verweigern.
 - [ ] Du findest einen Hinweis, aber nur, weil du mit dem Gesicht darin landest.
 - [ ] Ein zu lauter Streit mit Mizzi könnte später als Gerücht, Beschwerde oder Polizeinotiz enden.
 
+## Anschluss-Stub: Erste Begegnung mit Frau Zwirndl
+
+Frau Zwirndl tritt nicht als Ermittlerin auf, sondern als scheinbar alte Garderobenfrau des **Café Morgenstern**: Mantelgeruch, Schlüsselbund, höfliche Müdigkeit und ein Blick, der Menschen wie abgegebene Hüte sortiert. Sie gehört zu **Salon Siebte Tür**, aber das soll in dieser Szene höchstens als Andeutung unter der Schwelle liegen.
+
+Sie weiß bereits, dass **Lisel** verschwunden ist, dass **FMoGH** und **Frau Chorrätin Windschütz** in die Nacht verstrickt waren, und dass du irgendwie dazugehört hast. Sie weiß nicht, ob du Täterin, Opfer, Zeugin oder Werkzeug warst. Sie will kein bequemes Geständnis; sie will herausfinden, was wahr ist. Du erinnerst dich wirklich nicht.
+
+Frühe Beobachtungen bleiben mehrdeutig und sozial gefährlich, nicht eindeutig vampirisch:
+
+- “Ist Ihnen nicht gut? Sie sehen blass aus.”
+- “Sie sehen aus, als hätte der Morgen Sie zurückgegeben und sofort bereut.”
+- “Sie haben Erde am Saum, Blut am Mundwinkel und den Blick einer Frau, die gerade versucht, sich selbst höflich nicht zu kennen.”
+
+Mögliche Antwortstile, alle gültig und ohne einzige richtige Lösung:
+
+- [ ] Ehrliche Verwirrung: zugeben, dass Erinnerung fehlt.
+- [ ] Beschämtes Erfinden: eine harmlose Erklärung improvisieren, weil die Wahrheit zu nackt wirkt.
+- [ ] Bewusstes Lügen: eine kontrollierte Fassung anbieten, die Schutz oder Vorteil verspricht.
+- [ ] Ausweichender Selbstschutz: nichts Belastbares sagen, solange die Gefahr unklar ist.
+- [ ] Gegenfrage: Frau Zwirndl prüfen, was sie weiß und warum sie fragt.
+- [ ] Schweigen: den Blick, den Fleck oder die Tür antworten lassen.
+
+Jeder Stil soll Ton, Vertrauen, innere Stimmen, verfügbare Hinweise und spätere Folgen verschieben. Keiner löst die Szene allein. Frau Zwirndl darf zweifeln, ohne die echte Amnesie wegzuerklären.
+
+Kernzeile Frau Zwirndl:
+
+> “Ich will kein Geständnis. Geständnisse sind oft nur Lügen mit besserer Haltung. Ich will wissen, was wahr ist.”
+
+Möglicher Gesprächsausgang:
+
+> “Fangen Sie bei dem an, was nicht weglaufen kann: Fleck, Knopf, Lieferzettel, Tür.”
+
 ## Platzhalter: Konsequenzen
 
 - [ ] Früher Hinweis auf den Pfad der **Jägerin**.
