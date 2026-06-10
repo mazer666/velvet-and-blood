@@ -216,6 +216,121 @@
       font-family: var(--font-ui);
       font-size: 0.85rem;
     }
+
+    /* Journal toggle button — appears once first clue is found */
+    #journal-toolbar {
+      display: none;
+      text-align: right;
+      padding: 0.4rem 0 0.1rem;
+    }
+
+    #journal-btn {
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-family: var(--font-ui);
+      font-size: 0.72em;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0.2em 0;
+      transition: color 0.15s;
+    }
+
+    #journal-btn:hover { color: var(--accent); }
+
+    #journal-count {
+      color: var(--accent-dim);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Journal overlay */
+    #journal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(22, 18, 15, 0.82);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    #journal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    #journal-panel {
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 720px;
+      padding: 1.5rem 1.5rem 2rem;
+      max-height: 60vh;
+      overflow-y: auto;
+      transform: translateY(12px);
+      transition: transform 0.2s ease;
+    }
+
+    #journal-overlay.open #journal-panel {
+      transform: translateY(0);
+    }
+
+    #journal-title {
+      font-family: var(--font-ui);
+      font-size: 0.7em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    #journal-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    #journal-list li {
+      color: var(--text-dim);
+      font-family: var(--font-ui);
+      font-size: 0.85em;
+      padding: 0.4em 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      gap: 0.6em;
+      align-items: baseline;
+    }
+
+    #journal-list li::before {
+      content: '◆';
+      color: var(--accent-dim);
+      font-size: 0.6em;
+      flex-shrink: 0;
+      position: relative;
+      top: -0.05em;
+    }
+
+    #journal-close {
+      display: block;
+      width: 100%;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--font-ui);
+      font-size: 0.72em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.6em;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    #journal-close:hover { border-color: var(--accent-dim); color: var(--text); }
   </style>
 </head>
 <body>
@@ -232,9 +347,18 @@
   </div>
 
   <div id="story-output" style="display:none"></div>
+  <div id="journal-toolbar"><button id="journal-btn">Hinweise &thinsp;<span id="journal-count">0</span></button></div>
   <div id="choices-container" class="hidden"></div>
   <div id="end-screen">— Ende des ersten Akts —</div>
 
+</div>
+
+<div id="journal-overlay">
+  <div id="journal-panel">
+    <div id="journal-title">Gefundene Hinweise</div>
+    <ul id="journal-list"></ul>
+    <button id="journal-close">Schließen</button>
+  </div>
 </div>
 
 <!-- inkjs UMD runtime -->

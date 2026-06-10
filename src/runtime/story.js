@@ -20,10 +20,41 @@ const CLUE_LABELS = {
   pockets_marble:           'Murmel',
   windschuetz_beschreibung: 'Windschütz',
   lisel_garderobe:          'Liesels Fluchtweg',
+  sieben_tueren:            'Sieben Türen',
+  lisels_notiz:             'Liesels Notiz',
 };
 
 let story = null;
-let pendingClues = [];   // clues discovered in the current Continue() batch
+let pendingClues = [];     // clues discovered in the current Continue() batch
+const discoveredClues = []; // persistent journal across the full playthrough
+
+// ── Journal ───────────────────────────────────────────────────────────────────
+
+function journalAddClue(clueId) {
+  if (discoveredClues.includes(clueId)) return;
+  discoveredClues.push(clueId);
+
+  const li = document.createElement('li');
+  li.textContent = CLUE_LABELS[clueId] || clueId;
+  document.getElementById('journal-list').appendChild(li);
+
+  document.getElementById('journal-count').textContent = discoveredClues.length;
+  document.getElementById('journal-toolbar').style.display = 'block';
+}
+
+function initJournal() {
+  document.getElementById('journal-btn').addEventListener('click', () => {
+    document.getElementById('journal-overlay').classList.add('open');
+  });
+  document.getElementById('journal-close').addEventListener('click', () => {
+    document.getElementById('journal-overlay').classList.remove('open');
+  });
+  document.getElementById('journal-overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) {
+      document.getElementById('journal-overlay').classList.remove('open');
+    }
+  });
+}
 
 // ── Initialisation ────────────────────────────────────────────────────────────
 
@@ -36,6 +67,7 @@ async function init() {
     document.getElementById('loading').style.display = 'none';
     document.getElementById('start-btn').style.display = 'inline-block';
     document.getElementById('start-btn').addEventListener('click', startStory);
+    initJournal();
   } catch (err) {
     document.getElementById('loading').textContent =
       'Fehler: prologue.json nicht gefunden. Bitte zuerst "npm run compile" ausführen.';
@@ -68,7 +100,9 @@ function continueStory() {
     tags.forEach(tag => {
       const t = tag.trim();
       if (t.startsWith(TAG_CLUE)) {
-        pendingClues.push(t.slice(TAG_CLUE.length).trim());
+        const clueId = t.slice(TAG_CLUE.length).trim();
+        pendingClues.push(clueId);
+        journalAddClue(clueId);
       }
     });
 

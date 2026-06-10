@@ -4,6 +4,7 @@
 
 INCLUDE zwirndl_conversation.ink
 INCLUDE mizzi_confession.ink
+INCLUDE siebte_tuer.ink
 
 // ── Fertigkeiten ─────────────────────────────────────────────────────────────
 // Startwert 2 für alle. Pfadentwicklung verändert diese später.

@@ -283,4 +283,4 @@ Dann geht sie. Nicht weg — zurück zur Arbeit. In Aurelstein ist das nicht imm
     [Mizzi ist jetzt in der Nähe. Sie erscheint dort, wo Arbeit und Schuld sich überschneiden.] # companion: mizzi.active
 }
 
--> DONE
+-> siebte_tuer_einstieg
