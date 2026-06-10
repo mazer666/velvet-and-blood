@@ -2,6 +2,8 @@
 // Rinnstein hinter dem Café Morgenstern — Aurelstein, 1903
 // Phase 1 Narrative Prototype
 
+INCLUDE zwirndl_conversation.ink
+
 // ── Fertigkeiten ─────────────────────────────────────────────────────────────
 // Startwert 2 für alle. Pfadentwicklung verändert diese später.
 VAR skill_dame         = 2
@@ -399,4 +401,4 @@ Ihr Blick ist nicht feindselig. Er ist präzise.
     „Sie haben schon angefangen. Das ist besser als die meisten."
 }
 
--> DONE
+-> zwirndl_zweite_runde

@@ -5,8 +5,9 @@
 const STORY_FILE = './prologue.json';
 
 // Tags emitted by the Ink story
-const TAG_VOICE = 'voice:';
-const TAG_CLUE  = 'clue:';
+const TAG_VOICE     = 'voice:';
+const TAG_CLUE      = 'clue:';
+const TAG_COMPANION = 'companion:';
 
 // Clue labels shown as inline badges
 const CLUE_LABELS = {
@@ -103,18 +104,18 @@ function continueStory() {
 // ── Paragraph builder ─────────────────────────────────────────────────────────
 
 function buildParagraph(rawText, tags, clues) {
-  const isVoiceLine = tags.some(t => t.trim().startsWith(TAG_VOICE));
-  const voiceId     = isVoiceLine
-    ? tags.find(t => t.trim().startsWith(TAG_VOICE)).trim().slice(TAG_VOICE.length).trim()
-    : null;
+  const isVoiceLine     = tags.some(t => t.trim().startsWith(TAG_VOICE));
+  const isCompanionLine = tags.some(t => t.trim().startsWith(TAG_COMPANION));
+
+  // Companion status notification (no visible text, just a state marker)
+  if (isCompanionLine && !rawText) return null;
 
   const para = document.createElement('p');
   para.className = 'story-paragraph';
 
   if (isVoiceLine) {
+    // Inner voice: italic, muted, accent border
     para.classList.add('voice-line');
-
-    // Extract [VoiceName] prefix from text if present, style it
     const voiceMatch = rawText.match(/^\[([^\]]+)\]\s*/);
     if (voiceMatch) {
       const labelSpan = document.createElement('span');
@@ -124,6 +125,26 @@ function buildParagraph(rawText, tags, clues) {
       para.appendChild(document.createTextNode(rawText.slice(voiceMatch[0].length)));
     } else {
       para.textContent = rawText;
+    }
+  } else if (isCompanionLine) {
+    // Companion observation: similar to voice line but visually distinct
+    para.classList.add('companion-line');
+    const match = rawText.match(/^\[([^\]]+)\]\s*/);
+    if (match) {
+      const labelSpan = document.createElement('span');
+      labelSpan.className   = 'companion-label';
+      labelSpan.textContent = match[1];
+      para.appendChild(labelSpan);
+      para.appendChild(document.createTextNode(rawText.slice(match[0].length)));
+    } else {
+      // Status line like "[Frau Zwirndl ist jetzt in der Nähe...]"
+      const bracketMatch = rawText.match(/^\[([^\]]+)\]$/);
+      if (bracketMatch) {
+        para.classList.add('companion-status');
+        para.textContent = bracketMatch[1];
+      } else {
+        para.textContent = rawText;
+      }
     }
   } else {
     para.textContent = rawText;
