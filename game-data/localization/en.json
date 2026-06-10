@@ -1,12 +1,39 @@
 {
-  "new_game": "New Game",
-  "continue": "Continue",
-  "settings": "Settings",
-  "language": "Language",
-  "quit": "Quit",
-  "inventory": "Inventory",
-  "journal": "Journal",
-  "character": "Character",
-  "save": "Save",
-  "load": "Load"
+  "_convention": "Key format: category.scene_or_context.type.identifier — Examples: ui.new_game | scene.prologue.choice.inspect_bloodstain | scene.prologue.voice.die_ermittlerin.enter | scene.prologue.clue.bloodstain",
+
+  "ui.new_game": "New Game",
+  "ui.continue": "Continue",
+  "ui.settings": "Settings",
+  "ui.language": "Language",
+  "ui.quit": "Quit",
+  "ui.inventory": "Inventory",
+  "ui.journal": "Journal",
+  "ui.character": "Character",
+  "ui.save": "Save",
+  "ui.load": "Load",
+
+  "scene.prologue.description": "You wake in the gutter behind a coffeehouse. Beside you, a bloodstain on the cobblestones. It is not drying.",
+
+  "scene.prologue.voice.die_ermittlerin.enter": "A stain that does not dry. Your dress is torn. The courtyard looks like a crime scene with worse coffee.",
+  "scene.prologue.voice.die_dame.enter": "If you stand now, do it as though the gutter was an eccentric seating choice.",
+  "scene.prologue.voice.die_gosse.enter": "Mizzi will see you any moment. Decide quickly: victim, customer, or problem?",
+  "scene.prologue.voice.die_hungrige.enter": "Blood is blood. The question is whether this is a warning, a meal, or an invitation.",
+  "scene.prologue.voice.das_tierchen.enter": "The cat is not blinking. Either it knows something, or it is working for someone.",
+
+  "scene.prologue.choice.stand_up_dignified": "Stand up and act as though this was a chosen social position.",
+  "scene.prologue.choice.inspect_bloodstain": "Examine the bloodstain.",
+  "scene.prologue.choice.talk_to_cat": "Address the cat.",
+  "scene.prologue.choice.talk_to_mizzi_early": "Speak to Mizzi before she officially notices you.",
+  "scene.prologue.choice.flee_into_cafe": "Slip into the back entrance of the coffeehouse.",
+  "scene.prologue.choice.search_pockets": "Search your own pockets for clues.",
+  "scene.prologue.choice.look_in_reflection": "Look at your own face in the reflection of a window.",
+  "scene.prologue.choice.glance_at_delivery_note": "Take a brief look at the smudged delivery note.",
+
+  "scene.prologue.clue.bloodstain": "The stain is not drying. It is too round, too orderly — placed rather than spilled.",
+  "scene.prologue.clue.brass_button": "A brass button. Not from your dress. On the back, a small emblem: FMoGH.",
+  "scene.prologue.clue.delivery_note": "A delivery note: coffee, milk, coal, bread. Between the line items, a stamp: FMoGH — inspection completed.",
+  "scene.prologue.clue.cellar_door": "The cellar door looks ordinary. Its position is wrong.",
+  "scene.prologue.clue.pockets": "No identity. No name. A bent hairpin, an unnamed receipt, a piece of sugar, and a scrap of paper with one word: voluntarily.",
+
+  "scene.prologue.zwirndl.three_clues_response": "Three clues. In Aurelstein, that is almost a personality."
 }

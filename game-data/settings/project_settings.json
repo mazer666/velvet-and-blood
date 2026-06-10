@@ -1,4 +1,5 @@
 {
+  "schemaVersion": "0.2",
   "projectTitle": "Velvet and Blood – A City That Remembers",
   "internalSlug": "velvet-and-blood",
   "defaultLanguage": "de",
@@ -11,6 +12,11 @@
     "hardMaximumLines": 600
   },
   "firstSceneIdentifier": "prologue_gutter_behind_cafe",
+  "pathAffinitySchema": {
+    "tracks": ["jaegerin", "samtlaeuferin", "vampirin"],
+    "initialValue": 0,
+    "note": "Accumulated silently through choices, failed checks, relationships, and physical consequences. No path is chosen or locked explicitly; it emerges through play. A path should not be named to the player in Act 1."
+  },
   "currentDesignFlags": {
     "documentationPhaseOnly": true,
     "gameplayCodeImplemented": false,

@@ -1,0 +1,108 @@
+{
+  "_comment": "Scene data skeleton for prologue_gutter_behind_cafe. Narrative design in docs/scenes/prologue_gutter_behind_cafe.md.",
+  "scene_id": "prologue_gutter_behind_cafe",
+  "schema_version": "0.1",
+  "setting": {
+    "location_id": "aurelstein_morgenstern_courtyard",
+    "year": 1903,
+    "time_of_day": "morning"
+  },
+  "description_key": "scene.prologue.description",
+  "on_enter_voices": [
+    { "voice_id": "die_ermittlerin", "line_key": "scene.prologue.voice.die_ermittlerin.enter" },
+    { "voice_id": "die_dame",        "line_key": "scene.prologue.voice.die_dame.enter" },
+    { "voice_id": "die_gosse",       "line_key": "scene.prologue.voice.die_gosse.enter" },
+    { "voice_id": "die_hungrige",    "line_key": "scene.prologue.voice.die_hungrige.enter" },
+    { "voice_id": "das_tierchen",    "line_key": "scene.prologue.voice.das_tierchen.enter" }
+  ],
+  "choices": [
+    {
+      "choice_id": "stand_up_dignified",
+      "label_key": "scene.prologue.choice.stand_up_dignified",
+      "check": { "voice_id": "die_dame", "difficulty": "medium" },
+      "outcomes": {
+        "success_key": "scene.prologue.outcome.stand_up_success",
+        "failure_key": "scene.prologue.outcome.stand_up_failure",
+        "failure_consequence": "leaves_undignified_impression"
+      }
+    },
+    {
+      "choice_id": "inspect_bloodstain",
+      "label_key": "scene.prologue.choice.inspect_bloodstain",
+      "check": { "voice_id": "die_ermittlerin", "difficulty": "easy" },
+      "outcomes": {
+        "success_key": "scene.prologue.outcome.bloodstain_success",
+        "failure_key": "scene.prologue.outcome.bloodstain_failure",
+        "clue_id": "clue_bloodstain_round"
+      },
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
+    },
+    {
+      "choice_id": "talk_to_cat",
+      "label_key": "scene.prologue.choice.talk_to_cat"
+    },
+    {
+      "choice_id": "talk_to_mizzi_early",
+      "label_key": "scene.prologue.choice.talk_to_mizzi_early"
+    },
+    {
+      "choice_id": "flee_into_cafe",
+      "label_key": "scene.prologue.choice.flee_into_cafe"
+    },
+    {
+      "choice_id": "search_pockets",
+      "label_key": "scene.prologue.choice.search_pockets",
+      "clue_id": "clue_pocket_contents"
+    },
+    {
+      "choice_id": "look_in_reflection",
+      "label_key": "scene.prologue.choice.look_in_reflection"
+    },
+    {
+      "choice_id": "glance_at_delivery_note",
+      "label_key": "scene.prologue.choice.glance_at_delivery_note",
+      "clue_id": "clue_delivery_note_partial"
+    }
+  ],
+  "clues": [
+    {
+      "clue_id": "clue_bloodstain_round",
+      "description_key": "scene.prologue.clue.bloodstain",
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
+    },
+    {
+      "clue_id": "clue_brass_button",
+      "description_key": "scene.prologue.clue.brass_button",
+      "organization": "FMoGH",
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
+    },
+    {
+      "clue_id": "clue_delivery_note_partial",
+      "description_key": "scene.prologue.clue.delivery_note",
+      "organization": "FMoGH"
+    },
+    {
+      "clue_id": "clue_cellar_door",
+      "description_key": "scene.prologue.clue.cellar_door",
+      "schwellenkunst_hint": true,
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
+    },
+    {
+      "clue_id": "clue_pocket_contents",
+      "description_key": "scene.prologue.clue.pockets",
+      "possible_items": [
+        "bent_hairpin",
+        "unnamed_receipt",
+        "sugar_piece",
+        "paper_scrap_freiwillig",
+        "lisel_object"
+      ]
+    }
+  ],
+  "scene_exit": {
+    "condition": "min_clues_collected",
+    "min_clues": 3,
+    "next_scene_id": "zwirndl_first_conversation",
+    "trigger_line_key": "scene.prologue.zwirndl.three_clues_response"
+  }
+}

@@ -1,12 +1,39 @@
 {
-  "new_game": "Neues Spiel",
-  "continue": "Fortsetzen",
-  "settings": "Einstellungen",
-  "language": "Sprache",
-  "quit": "Beenden",
-  "inventory": "Inventar",
-  "journal": "Journal",
-  "character": "Figur",
-  "save": "Speichern",
-  "load": "Laden"
+  "_convention": "Key-Format: kategorie.szene_oder_kontext.typ.bezeichner — Beispiele: ui.new_game | scene.prologue.choice.inspect_bloodstain | scene.prologue.voice.die_ermittlerin.enter | scene.prologue.clue.bloodstain",
+
+  "ui.new_game": "Neues Spiel",
+  "ui.continue": "Fortsetzen",
+  "ui.settings": "Einstellungen",
+  "ui.language": "Sprache",
+  "ui.quit": "Beenden",
+  "ui.inventory": "Inventar",
+  "ui.journal": "Journal",
+  "ui.character": "Figur",
+  "ui.save": "Speichern",
+  "ui.load": "Laden",
+
+  "scene.prologue.description": "Du wachst im Rinnstein hinter einem Kaffeehaus auf. Neben dir liegt ein Blutfleck auf dem Pflaster. Er trocknet nicht.",
+
+  "scene.prologue.voice.die_ermittlerin.enter": "Ein Fleck trocknet nicht. Dein Kleid ist zerrissen. Der Hof sieht aus wie ein Tatort, nur mit schlechterem Kaffee.",
+  "scene.prologue.voice.die_dame.enter": "Wenn du jetzt aufstehst, dann bitte so, als wäre der Rinnstein eine exzentrische Sitzgelegenheit.",
+  "scene.prologue.voice.die_gosse.enter": "Mizzi sieht dich gleich. Entscheide dich schnell: Opfer, Kundschaft oder Problem?",
+  "scene.prologue.voice.die_hungrige.enter": "Blut ist Blut. Die Frage ist nur, ob es Warnung, Mahlzeit oder Einladung ist.",
+  "scene.prologue.voice.das_tierchen.enter": "Die Katze blinzelt nicht. Entweder weiß sie etwas, oder sie arbeitet für jemanden.",
+
+  "scene.prologue.choice.stand_up_dignified": "Aufstehen und so tun, als sei dies eine gewählte gesellschaftliche Position.",
+  "scene.prologue.choice.inspect_bloodstain": "Den Blutfleck untersuchen.",
+  "scene.prologue.choice.talk_to_cat": "Die Katze ansprechen.",
+  "scene.prologue.choice.talk_to_mizzi_early": "Mizzi ansprechen, bevor sie dich offiziell bemerkt.",
+  "scene.prologue.choice.flee_into_cafe": "In den Hintereingang des Kaffeehauses fliehen.",
+  "scene.prologue.choice.search_pockets": "In den eigenen Taschen nach Hinweisen suchen.",
+  "scene.prologue.choice.look_in_reflection": "Das eigene Gesicht im Spiegelbild einer Fensterscheibe ansehen.",
+  "scene.prologue.choice.glance_at_delivery_note": "Den verschmierten Lieferzettel nur kurz betrachten.",
+
+  "scene.prologue.clue.bloodstain": "Der Fleck trocknet nicht. Er ist zu rund, zu ordentlich — eher abgelegt als vergossen.",
+  "scene.prologue.clue.brass_button": "Ein Messingknopf. Nicht von deinem Kleid. Auf der Rückseite ein winziges Kürzel: FMoGH.",
+  "scene.prologue.clue.delivery_note": "Ein Lieferzettel: Kaffee, Milch, Kohle, Brot. Zwischen den Posten ein Stempel: FMoGH — Sichtung erfolgt.",
+  "scene.prologue.clue.cellar_door": "Die Kellertür sieht gewöhnlich aus. Ihre Lage stimmt nicht.",
+  "scene.prologue.clue.pockets": "Keine Identität. Kein Name. Eine verbogene Haarnadel, eine namenlose Quittung, ein Stück Zucker und ein Papierfetzen mit dem Wort: freiwillig.",
+
+  "scene.prologue.zwirndl.three_clues_response": "Drei Hinweise. Das ist in Aurelstein fast schon eine Persönlichkeit."
 }
