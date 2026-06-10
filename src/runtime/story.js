@@ -1,0 +1,151 @@
+// story.js
+// Loads prologue.json (compiled Ink story) and drives the browser display.
+// Requires inkjs UMD loaded via <script> before this file.
+
+const STORY_FILE = './prologue.json';
+
+// Tags emitted by the Ink story
+const TAG_VOICE = 'voice:';
+const TAG_CLUE  = 'clue:';
+
+// Clue labels shown as inline badges
+const CLUE_LABELS = {
+  bloodstain:          'Blutfleck',
+  brass_button:        'Messingknopf',
+  delivery_note:       'Lieferzettel',
+  cellar_door:         'Kellertür',
+  cellar_door_ribbon:  'Wollband',
+  pockets:             'Taschen',
+  pockets_marble:      'Murmel',
+};
+
+let story = null;
+let pendingClues = [];   // clues discovered in the current Continue() batch
+
+// ── Initialisation ────────────────────────────────────────────────────────────
+
+async function init() {
+  try {
+    const res = await fetch(STORY_FILE);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const json = await res.json();
+    story = new inkjs.Story(json);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('start-btn').style.display = 'inline-block';
+    document.getElementById('start-btn').addEventListener('click', startStory);
+  } catch (err) {
+    document.getElementById('loading').textContent =
+      'Fehler: prologue.json nicht gefunden. Bitte zuerst "npm run compile" ausführen.';
+    console.error(err);
+  }
+}
+
+function startStory() {
+  document.getElementById('title-screen').style.display  = 'none';
+  document.getElementById('story-output').style.display  = 'block';
+  continueStory();
+}
+
+// ── Story loop ────────────────────────────────────────────────────────────────
+
+function continueStory() {
+  const output    = document.getElementById('story-output');
+  const choicesEl = document.getElementById('choices-container');
+
+  pendingClues = [];
+
+  // Consume all available text before showing choices
+  while (story.canContinue) {
+    const rawText = story.Continue().trim();
+    const tags    = story.currentTags;
+
+    if (!rawText) continue;
+
+    // Collect clue tags from this line
+    tags.forEach(tag => {
+      const t = tag.trim();
+      if (t.startsWith(TAG_CLUE)) {
+        pendingClues.push(t.slice(TAG_CLUE.length).trim());
+      }
+    });
+
+    // Build paragraph element
+    const para = buildParagraph(rawText, tags, pendingClues);
+    output.appendChild(para);
+    pendingClues = [];  // each paragraph owns its clues
+  }
+
+  output.scrollTop = output.scrollHeight;
+
+  // Show choices or end screen
+  choicesEl.innerHTML = '';
+  if (story.currentChoices.length > 0) {
+    choicesEl.classList.remove('hidden');
+    story.currentChoices.forEach((choice, i) => {
+      const btn = document.createElement('button');
+      btn.className   = 'choice-btn';
+      btn.textContent = choice.text;
+      btn.addEventListener('click', () => {
+        choicesEl.classList.add('hidden');
+        addDivider(output);
+        story.ChooseChoiceIndex(i);
+        continueStory();
+      });
+      choicesEl.appendChild(btn);
+    });
+  } else {
+    choicesEl.classList.add('hidden');
+    document.getElementById('end-screen').style.display = 'block';
+    output.scrollTop = output.scrollHeight;
+  }
+}
+
+// ── Paragraph builder ─────────────────────────────────────────────────────────
+
+function buildParagraph(rawText, tags, clues) {
+  const isVoiceLine = tags.some(t => t.trim().startsWith(TAG_VOICE));
+  const voiceId     = isVoiceLine
+    ? tags.find(t => t.trim().startsWith(TAG_VOICE)).trim().slice(TAG_VOICE.length).trim()
+    : null;
+
+  const para = document.createElement('p');
+  para.className = 'story-paragraph';
+
+  if (isVoiceLine) {
+    para.classList.add('voice-line');
+
+    // Extract [VoiceName] prefix from text if present, style it
+    const voiceMatch = rawText.match(/^\[([^\]]+)\]\s*/);
+    if (voiceMatch) {
+      const labelSpan = document.createElement('span');
+      labelSpan.className   = 'voice-label';
+      labelSpan.textContent = voiceMatch[1];
+      para.appendChild(labelSpan);
+      para.appendChild(document.createTextNode(rawText.slice(voiceMatch[0].length)));
+    } else {
+      para.textContent = rawText;
+    }
+  } else {
+    para.textContent = rawText;
+  }
+
+  // Append clue badges
+  clues.forEach(clueId => {
+    const badge = document.createElement('span');
+    badge.className   = 'clue-found';
+    badge.textContent = '+ ' + (CLUE_LABELS[clueId] || clueId);
+    para.appendChild(badge);
+  });
+
+  return para;
+}
+
+function addDivider(container) {
+  const hr = document.createElement('hr');
+  hr.className = 'story-divider';
+  container.appendChild(hr);
+}
+
+// ── Start ─────────────────────────────────────────────────────────────────────
+
+init();

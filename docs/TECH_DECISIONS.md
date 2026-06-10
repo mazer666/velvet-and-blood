@@ -1,45 +1,55 @@
 # Technical Decisions
 
-## Current Engine Status
+## Narrative Scripting: Ink
 
-No final engine choice has been made yet. The project should remain flexible until the first narrative prototype proves what the game needs.
+**Decision:** Ink by Inkle Studios is the narrative scripting language for this project.
 
-## Preferred Development Approach
+**Rationale:** Ink is MIT-licensed and open source. It was designed specifically for branching narrative games with state tracking, conditional text, and complex choice structures. It is used in production in 80 Days, Heaven's Vault, and as the dialogue backbone for Disco Elysium. The browser runtime (`inkjs`) fits the browser-first requirement without a game engine.
 
-### Phase 1: Narrative Prototype
+**Stack for Phase 1:**
+- `.ink` files contain all narrative logic, German prose, checks, and story state.
+- `inkjs` (npm) provides the browser runtime.
+- A compile step (see `package.json`) produces a `.json` story file that the browser loads.
+- A minimal HTML/JS harness in `src/runtime/` drives the display.
 
-Create a text-first prototype that validates tone, choices, checks, inner voices, consequences, social pressure, and data organization.
+**Phase 2 forward:** The HTML harness grows into a proper TypeScript frontend as visual and save-system needs become clear. Ink remains the story layer; TypeScript handles state persistence, save/load, and UI.
 
-### Phase 2: Browser Prototype
+**Blender** remains a candidate for Phase 4 prerendered or hybrid 2.5D scene assets. No engine decision needed before Phase 3.
 
-Build a browser-playable version with a simple interface for scenes, choices, journal or notes entries, character state, saves, and localization.
+---
 
-### Phase 3: 2.5D Hybrid Prototype
+## Project Structure
 
-Explore a browser-playable 2.5D hybrid with isometric scenes, limited movement, hotspots, dialogue, checks, and placeholder graphics first.
+```
+src/
+  ink/
+    prologue.ink        ← story source (version controlled)
+  runtime/
+    index.html          ← browser harness
+    story.js            ← inkjs integration
+    prologue.json       ← compiled story (generated via npm run compile)
+game-data/              ← scene data, settings, localization
+docs/                   ← design documentation
+```
 
-## Possible Technology Options
+---
 
-### Godot 4 with GDScript
+## Getting Started
 
-Godot 4 remains a possible option if the project benefits from a game-editor workflow, scene tools, animation support, and export targets.
+```bash
+npm install
+npm run compile    # compiles src/ink/prologue.ink → src/runtime/prologue.json
+npm run dev        # serves src/runtime/ at localhost:3000
+```
 
-### TypeScript and Web Stack
+The Inky editor (free, by Inkle Studios) can also open `.ink` files directly for editing and live preview.
 
-A TypeScript-based browser stack remains a possible option if the project benefits from direct web deployment, simple data loading, and accessible contributor workflows.
-
-### Blender Asset Pipeline
-
-Blender may become useful later for prerendered or hybrid 2.5D assets, especially if the project uses isometric scenes, fixed-camera environments, or painterly placeholder renders.
+---
 
 ## Data and Audio Readiness
 
-Narrative text and dialogue should be data-driven and ID-based. This keeps localization, revision tracking, and possible future voice-over practical. Avoid player-entered protagonist names so voiced lines and translated references can remain stable.
+Narrative text and dialogue are in `.ink` files for Phase 1. In Phase 3, localization keys (`de.json`, `en.json`) replace inline text as the story is prepared for voice-over. The ID convention is already established in the localization files.
 
 ## Save-System Trust
 
-The future save system must be treated as core infrastructure, not polish. It should support manual saves, autosaves, multiple slots, visible confirmation, versioned save data, and safeguards against silent save failure.
-
-## Current Technical Principle
-
-Do not choose technology before the narrative prototype clarifies the needs of the game. Avoid building a large engine before there is a small playable scene.
+The future save system is core infrastructure. Inkjs provides `story.state.ToJson()` and `story.state.LoadJson()` for save/restore. A robust save layer will be built on top of this in Phase 3.

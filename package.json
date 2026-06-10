@@ -1,0 +1,20 @@
+{
+  "name": "velvet-and-blood",
+  "version": "0.1.0",
+  "description": "Velvet and Blood – A City That Remembers",
+  "type": "module",
+  "scripts": {
+    "compile": "node scripts/compile.js",
+    "dev": "npx serve src/runtime -p 3000 --no-clipboard",
+    "build": "npm run compile"
+  },
+  "dependencies": {
+    "inkjs": "^2.3.0"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
