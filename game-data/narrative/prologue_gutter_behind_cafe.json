@@ -1,7 +1,7 @@
 {
-  "_comment": "Scene data skeleton for prologue_gutter_behind_cafe. Narrative design in docs/scenes/prologue_gutter_behind_cafe.md.",
+  "_comment": "Scene data for prologue_gutter_behind_cafe. Narrative design in docs/scenes/prologue_gutter_behind_cafe.md. Outcome texts in de.json / en.json.",
   "scene_id": "prologue_gutter_behind_cafe",
-  "schema_version": "0.1",
+  "schema_version": "0.2",
   "setting": {
     "location_id": "aurelstein_morgenstern_courtyard",
     "year": 1903,
@@ -23,7 +23,8 @@
       "outcomes": {
         "success_key": "scene.prologue.outcome.stand_up_success",
         "failure_key": "scene.prologue.outcome.stand_up_failure",
-        "failure_consequence": "leaves_undignified_impression"
+        "failure_reveals_clue": "clue_bloodstain_round",
+        "failure_adds_world_state": "pospischil_has_noted_protagonist"
       }
     },
     {
@@ -33,17 +34,48 @@
       "outcomes": {
         "success_key": "scene.prologue.outcome.bloodstain_success",
         "failure_key": "scene.prologue.outcome.bloodstain_failure",
-        "clue_id": "clue_bloodstain_round"
+        "success_clue_id": "clue_bloodstain_round",
+        "failure_clue_id": "clue_brass_button"
       },
-      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"],
+      "follow_up_checks": [
+        {
+          "choice_id": "inspect_bloodstain_deeper_hunger",
+          "label_key": "scene.prologue.choice.inspect_bloodstain_deeper",
+          "check": { "voice_id": "die_hungrige", "difficulty": "hard" },
+          "outcomes": {
+            "success_key": "scene.prologue.outcome.bloodstain_hunger_success",
+            "failure_key": "scene.prologue.outcome.bloodstain_hunger_failure"
+          },
+          "path_affinity_hints": ["vampirin", "samtlaeuferin"]
+        },
+        {
+          "choice_id": "inspect_bloodstain_deeper_pedantin",
+          "label_key": "scene.prologue.choice.inspect_bloodstain_deeper",
+          "check": { "voice_id": "die_pedantin", "difficulty": "medium" },
+          "outcomes": {
+            "success_key": "scene.prologue.outcome.bloodstain_pedantin_success",
+            "failure_key": "scene.prologue.outcome.bloodstain_pedantin_failure"
+          },
+          "path_affinity_hints": ["jaegerin"]
+        }
+      ]
     },
     {
       "choice_id": "talk_to_cat",
-      "label_key": "scene.prologue.choice.talk_to_cat"
+      "label_key": "scene.prologue.choice.talk_to_cat",
+      "path_affinity_hints": ["samtlaeuferin"]
     },
     {
       "choice_id": "talk_to_mizzi_early",
-      "label_key": "scene.prologue.choice.talk_to_mizzi_early"
+      "label_key": "scene.prologue.choice.talk_to_mizzi_early",
+      "check": { "voice_id": "die_gosse", "difficulty": "medium" },
+      "outcomes": {
+        "success_key": "scene.prologue.outcome.mizzi_early_success",
+        "failure_key": "scene.prologue.outcome.mizzi_early_failure",
+        "failure_adds_world_state": "benedikt_has_noted_protagonist",
+        "failure_adds_world_state_2": "kastner_incoming"
+      }
     },
     {
       "choice_id": "flee_into_cafe",
@@ -52,16 +84,40 @@
     {
       "choice_id": "search_pockets",
       "label_key": "scene.prologue.choice.search_pockets",
-      "clue_id": "clue_pocket_contents"
+      "outcomes": {
+        "success_key": "scene.prologue.outcome.pockets_success"
+      },
+      "clues_revealed": ["clue_pocket_contents", "clue_pockets_marble"]
     },
     {
       "choice_id": "look_in_reflection",
-      "label_key": "scene.prologue.choice.look_in_reflection"
+      "label_key": "scene.prologue.choice.look_in_reflection",
+      "check": { "voice_id": "die_tote", "difficulty": "medium" },
+      "outcomes": {
+        "success_key": "scene.prologue.outcome.reflection_success",
+        "failure_key": "scene.prologue.outcome.reflection_failure",
+        "failure_adds_world_state": "kastner_incoming"
+      },
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
     },
     {
       "choice_id": "glance_at_delivery_note",
       "label_key": "scene.prologue.choice.glance_at_delivery_note",
-      "clue_id": "clue_delivery_note_partial"
+      "clue_id": "clue_delivery_note_partial",
+      "path_affinity_hints": ["jaegerin"]
+    },
+    {
+      "choice_id": "try_cellar_door",
+      "label_key": "scene.prologue.choice.try_cellar_door",
+      "check": { "voice_id": "die_ermittlerin", "difficulty": "medium" },
+      "outcomes": {
+        "success_key": "scene.prologue.outcome.cellar_door_success",
+        "failure_key": "scene.prologue.outcome.cellar_door_failure",
+        "success_clue_id": "clue_cellar_door",
+        "failure_clue_id": "clue_cellar_door_ribbon"
+      },
+      "schwellenkunst_hint": true,
+      "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
     }
   ],
   "clues": [
@@ -79,7 +135,8 @@
     {
       "clue_id": "clue_delivery_note_partial",
       "description_key": "scene.prologue.clue.delivery_note",
-      "organization": "FMoGH"
+      "organization": "FMoGH",
+      "partial_signature": "Windschütz"
     },
     {
       "clue_id": "clue_cellar_door",
@@ -88,17 +145,27 @@
       "path_ambiguity": ["jaegerin", "samtlaeuferin", "vampirin"]
     },
     {
+      "clue_id": "clue_cellar_door_ribbon",
+      "description_key": "scene.prologue.clue.cellar_door_ribbon",
+      "connected_character": "lisel"
+    },
+    {
       "clue_id": "clue_pocket_contents",
       "description_key": "scene.prologue.clue.pockets",
-      "possible_items": [
-        "bent_hairpin",
-        "unnamed_receipt",
-        "sugar_piece",
-        "paper_scrap_freiwillig",
-        "lisel_object"
-      ]
+      "possible_items": ["bent_hairpin", "unnamed_receipt", "sugar_piece", "paper_scrap_freiwillig"]
+    },
+    {
+      "clue_id": "clue_pockets_marble",
+      "description_key": "scene.prologue.clue.pockets_marble",
+      "connected_character": "lisel",
+      "foreshadows": "das_ist_nicht_dein_name"
     }
   ],
+  "world_state_flags": {
+    "pospischil_has_noted_protagonist": false,
+    "benedikt_has_noted_protagonist": false,
+    "kastner_incoming": false
+  },
   "scene_exit": {
     "condition": "min_clues_collected",
     "min_clues": 3,

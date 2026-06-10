@@ -1,5 +1,5 @@
 {
-  "_convention": "Key format: category.scene_or_context.type.identifier — Examples: ui.new_game | scene.prologue.choice.inspect_bloodstain | scene.prologue.voice.die_ermittlerin.enter | scene.prologue.clue.bloodstain",
+  "_convention": "Key format: category.scene_or_context.type.identifier — Examples: ui.new_game | scene.prologue.choice.inspect_bloodstain | scene.prologue.voice.die_ermittlerin.enter | scene.prologue.outcome.stand_up_success",
 
   "ui.new_game": "New Game",
   "ui.continue": "Continue",
@@ -22,18 +22,52 @@
 
   "scene.prologue.choice.stand_up_dignified": "Stand up and act as though this was a chosen social position.",
   "scene.prologue.choice.inspect_bloodstain": "Examine the bloodstain.",
+  "scene.prologue.choice.inspect_bloodstain_deeper": "Look more closely — what exactly is wrong with it?",
   "scene.prologue.choice.talk_to_cat": "Address the cat.",
   "scene.prologue.choice.talk_to_mizzi_early": "Speak to Mizzi before she officially notices you.",
   "scene.prologue.choice.flee_into_cafe": "Slip into the back entrance of the coffeehouse.",
   "scene.prologue.choice.search_pockets": "Search your own pockets for clues.",
   "scene.prologue.choice.look_in_reflection": "Look at your own face in the reflection of a window.",
   "scene.prologue.choice.glance_at_delivery_note": "Take a brief look at the smudged delivery note.",
+  "scene.prologue.choice.try_cellar_door": "Examine the cellar door.",
 
   "scene.prologue.clue.bloodstain": "The stain is not drying. It is too round, too orderly — placed rather than spilled.",
   "scene.prologue.clue.brass_button": "A brass button. Not from your dress. On the back, a small emblem: FMoGH.",
   "scene.prologue.clue.delivery_note": "A delivery note: coffee, milk, coal, bread. Between the line items, a stamp: FMoGH — inspection completed.",
   "scene.prologue.clue.cellar_door": "The cellar door looks ordinary. Its position is wrong.",
+  "scene.prologue.clue.cellar_door_ribbon": "A ribbon of pink wool, a finger's width, tucked through the door gap like a note in a book. It belongs to someone small.",
   "scene.prologue.clue.pockets": "No identity. No name. A bent hairpin, an unnamed receipt, a piece of sugar, and a scrap of paper with one word: voluntarily.",
+  "scene.prologue.clue.pockets_marble": "A marble, the color of the inside of an eye you have never met. It does not belong to you.",
+
+  "scene.prologue.outcome.stand_up_success": "You stand up.\n\nIt is not a perfect resurrection — the hem is sticking, the shoulder is damp, and your sense of balance has further objections to register. But you stand in the way of someone who considered how a person in this situation would stand, and then did exactly that.\n\nMizzi, who has opened the back door and had a sentence prepared beginning with 'What do you think you're doing,' pauses. She reclassifies you. The new sentence is: 'Can I help?'\n\nThis is a significant social concession. She has decided you are someone to whom help is offered, not someone to whom it is explained that courtyards are not sleeping quarters. In Aurelstein, that is the difference between a window that opens and one that closes.",
+
+  "scene.prologue.outcome.stand_up_failure": "Your right knee finds cobblestone twenty-three in the second row left of the delivery entrance — not because you sought it, but because it sought you. The stone receives this with the composure of a witness who has documented worse and no longer startles.\n\nA layer of soapwater, coffee grounds, and something you would rather not classify receives you.\n\nAt the back, on the second floor, a curtain shifts. Frau Pospischil, fifty-seven, widow of a cellar master, who registers the disturbances of this courtyard every morning at half past six with an accuracy that would honor a district court, notes internally: the person in the gutter is a disappointment.\n\nIn exchange, you discover something. The bloodstain does not absorb the dirt of its surroundings. The cobblestones around it have darkened. It has not. It insists on remaining itself.",
+
+  "scene.prologue.outcome.bloodstain_success": "The stain was not spilled. It was placed.\n\nThis sounds like a small distinction and is a large one. Blood follows gravity, pressure, movement — it sprays, flows, distributes itself along the lowest available path. This stain is different. Evenly round, with an edge that looks like the signature of someone who knows how signatures are supposed to look.\n\nSomeone wanted a circle here. Circles do not form on their own.\n\nDie Ermittlerin: No impact. No flow. This is not an accident site. This is a filing.",
+
+  "scene.prologue.outcome.bloodstain_failure": "You look. You look more closely. You look so closely that the cat begins to look closely as well, as though the scene requires a second opinion.\n\nThe problem is not that you see nothing. The problem is that you see too much: the umbrella stand with the wrong shadow, the cracks between the milk canisters, the sign hanging three fingers too far to the left. Aurelstein is a city that has learned to look interestingly wrong, so that you do not look at what is correctly wrong.\n\nWhat you missed: the delivery note on the wall carries a stamp that has no business being on a delivery note.\n\nThe cat nudges something from under the rain barrel. A brass button rolls toward your knee. It gleams as though it has been waiting.",
+
+  "scene.prologue.outcome.bloodstain_hunger_success": "A warning.\n\nNot food — the smell is wrong. Too cold, too intentional, like a message in a language you do not yet know how to speak, but recognize is addressed to you.\n\nAn invitation would be warmer. Food would be more urgent. This is the equivalent of a file left on your desk by someone who did not knock. It has an opinion about you. You do not yet have one about it.",
+
+  "scene.prologue.outcome.bloodstain_hunger_failure": "Your body gives an answer before you finish asking the question.\n\nThe answer has a shape you do not recognize — not hunger, that would be simpler. Hunger is negotiable. This is more like the tone in which a debt speaks when you had forgotten it existed. It announces itself. It does not expect a response. It only expects you to know it is there.\n\nUseful, nonetheless: you now know that your body knows something about this stain that you do not. The gap between these two forms of knowledge is the actual clue.",
+
+  "scene.prologue.outcome.bloodstain_pedantin_success": "Circles do not form on their own.\n\nThis is the core of the problem, and the core is uncomfortable: there is no physics that produces an even circle from spilled blood. Blood flows. It takes the shape of its surface and responds to pressure and gravity. A perfect circle requires intent, a tool, or a property of the blood itself that contradicts the standard reference work.\n\nAll three options are unsatisfying. Die Pedantin therefore selects a fourth: note all three and leave the question open.\n\nThis is not failure. This is correct scientific practice. It is also very uncomfortable.",
+
+  "scene.prologue.outcome.bloodstain_pedantin_failure": "You have three hypotheses and cannot eliminate any of them.\n\nThe first: the blood arranged itself this way — physically impossible, but cleanly formulable as a hypothesis. The second: someone shaped the blood — implying a perpetrator with time and geometric ambitions. The third: the premises of your observation are wrong, meaning there is something fundamental about this stain you do not know.\n\nDie Pedantin dislikes three equally open hypotheses. She calls it a methodological failure.\n\nThe file is open. It will return.",
+
+  "scene.prologue.outcome.mizzi_early_success": "You move before Mizzi has fully opened the door. No deliberation — simply the right positioning, the right expression for someone who has a right to be here.\n\nMizzi stops on the threshold. Her sentence — she had at least two prepared, beginning with 'What are you doing' or 'I'm calling the police' — reorganizes itself.\n\n'You look,' she says, 'like the night is finished with you, not the other way around.' That is not an accusation. That is an invitation to explain what happened.\n\nFrom the kitchen window, Benedikt Hrdlicka, eighteen, kitchen helper, has been watching. He withdraws. He has registered that you know how situations work. This makes you less interesting to him — which means he will not report you.",
+
+  "scene.prologue.outcome.mizzi_early_failure": "Too late.\n\nMizzi has opened the door and has already classified you. The classification took approximately one second and reads: problem. Not the dangerous kind — more the kind you report to the owner and then wait.\n\n'I'll check with Herr Kastner what he thinks,' she says. Herr Kastner, sixty-seven, owner of Café Morgenstern for forty years, has a considered opinion about persons found in his courtyard, and he will express it in approximately eighty seconds.\n\nFrom the small barred kitchen window at half-height, Benedikt Hrdlicka has been watching you for three minutes. He saw you wake. He saw you at the bloodstain. He will say nothing — silence is a currency in kitchens — but he has seen you. That is now a thread in the world that only he knows about.",
+
+  "scene.prologue.outcome.reflection_success": "The face in the windowpane is yours.\n\nYou know it is yours — not because you recognize it, but because it moves when you move and stopped breathing exactly when you stopped. That is usually enough.\n\nWhat is wrong: it is looking at you. Not into you — at you. The way someone looks when they have decided to be honest and are still waiting for the right moment.\n\nYou do not know what name the face has. You know it has the same one as you. That is what makes the problem interesting.",
+
+  "scene.prologue.outcome.reflection_failure": "You look into the glass.\n\nThe glass looks back. This is anatomically correct — reflections do that. The problem is that you spent approximately two seconds recognizing yourself, and in those two seconds the door behind you has opened.\n\nHerr Kastner, owner of Café Morgenstern, has fully formed opinions about people who stand staring into his courtyard windows. He has brought them with him.",
+
+  "scene.prologue.outcome.cellar_door_success": "The door is in the wrong place.\n\nNot broken — misplaced. It sits half a meter east of where the sketch on the delivery note indicates it should be. On the sketch — a casual orientation aid for cart drivers — the cellar door is drawn where it ought to be. Not where it is.\n\nThis may be an error in the sketch. It may also mean that one of the two positions is not the true one. In Aurelstein, these two possibilities are weighted differently.",
+
+  "scene.prologue.outcome.cellar_door_failure": "The door does not open.\n\nYou pull. You push. You consider whether cellar doors require persuasion as a rule, or only this one.\n\nWhat falls out when you stop: a ribbon of pink wool, a finger's width, tucked through the door gap like a note in a book. It belongs to someone small. It smells of coffeehouse and of a child waiting somewhere for something.",
+
+  "scene.prologue.outcome.pockets_success": "A bent hairpin. A receipt without a name — dated three days ago, illegible letters, total: 2 Krone 40. A piece of sugar, halved, as though someone set the other half aside for later. A scrap of paper with a single word in an unfamiliar handwriting: voluntarily.\n\nAnd then something else. Something small and round that feels like it belongs to a child — a marble, the color of the inside of an eye you have never met but may nonetheless know.\n\nThis is not your inventory. This is the inventory of a person who was on the way to being somewhere.",
 
   "scene.prologue.zwirndl.three_clues_response": "Three clues. In Aurelstein, that is almost a personality."
 }
