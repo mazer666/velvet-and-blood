@@ -3,7 +3,11 @@
 // Run with: npm run compile
 
 import { readFileSync, writeFileSync } from 'fs';
-import { Compiler } from 'inkjs/compiler';
+import { createRequire } from 'module';
+import { Compiler } from 'inkjs/compiler/Compiler';
+
+const require = createRequire(import.meta.url);
+const { PosixFileHandler } = require('inkjs/compiler/FileHandler/PosixFileHandler');
 
 const INPUT  = 'src/ink/prologue.ink';
 const OUTPUT = 'src/runtime/prologue.json';
@@ -12,6 +16,7 @@ const source = readFileSync(INPUT, 'utf8');
 
 const compiler = new Compiler(source, {
     countAllVisits: false,
+    fileHandler: new PosixFileHandler('src/ink'),
     errorHandler: (message, type) => {
         const label = type === 3 ? 'ERROR' : type === 2 ? 'WARNING' : 'INFO';
         console.error(`[${label}] ${message}`);

@@ -11,13 +11,15 @@ const TAG_COMPANION = 'companion:';
 
 // Clue labels shown as inline badges
 const CLUE_LABELS = {
-  bloodstain:          'Blutfleck',
-  brass_button:        'Messingknopf',
-  delivery_note:       'Lieferzettel',
-  cellar_door:         'Kellertür',
-  cellar_door_ribbon:  'Wollband',
-  pockets:             'Taschen',
-  pockets_marble:      'Murmel',
+  bloodstain:               'Blutfleck',
+  brass_button:             'Messingknopf',
+  delivery_note:            'Lieferzettel',
+  cellar_door:              'Kellertür',
+  cellar_door_ribbon:       'Wollband',
+  pockets:                  'Taschen',
+  pockets_marble:           'Murmel',
+  windschuetz_beschreibung: 'Windschütz',
+  lisel_garderobe:          'Liesels Fluchtweg',
 };
 
 let story = null;

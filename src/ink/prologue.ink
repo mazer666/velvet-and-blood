@@ -3,6 +3,7 @@
 // Phase 1 Narrative Prototype
 
 INCLUDE zwirndl_conversation.ink
+INCLUDE mizzi_confession.ink
 
 // ── Fertigkeiten ─────────────────────────────────────────────────────────────
 // Startwert 2 für alle. Pfadentwicklung verändert diese später.

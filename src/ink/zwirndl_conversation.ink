@@ -212,4 +212,4 @@ Die Katze auf der Regentonne blinzelt einmal. Dann springt sie ab und verschwind
     [Frau Zwirndl ist jetzt in der Nähe. Sie ist nicht immer sichtbar. Sie ist selten weit.] # companion: zwirndl.active
 }
 
--> DONE
+-> mizzi_treffen
