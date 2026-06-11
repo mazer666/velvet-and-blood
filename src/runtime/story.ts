@@ -1,4 +1,6 @@
 import { Story } from 'inkjs';
+import { CharacterGenerator } from '../chargen/CharacterGenerator';
+import type { CharacterState } from '../types/game';
 
 const STORY_FILE = './prologue.json';
 
@@ -23,6 +25,8 @@ const CLUE_LABELS: Record<string, string> = {
 let story: Story | null = null;
 let pendingClues: string[] = [];
 const discoveredClues: string[] = [];
+
+const chargen = new CharacterGenerator();
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -60,7 +64,7 @@ function initJournal(): void {
   });
 }
 
-// ── Initialisation ────────────────────────────────────────────────────────────
+// ── Init: load JSON, show start button ───────────────────────────────────────
 
 async function init(): Promise<void> {
   try {
@@ -72,7 +76,7 @@ async function init(): Promise<void> {
     el('loading').style.display = 'none';
     const startBtn = el<HTMLButtonElement>('start-btn');
     startBtn.style.display = 'inline-block';
-    startBtn.addEventListener('click', startStory);
+    startBtn.addEventListener('click', showChargen);
     initJournal();
   } catch (err) {
     el('loading').textContent =
@@ -81,9 +85,33 @@ async function init(): Promise<void> {
   }
 }
 
-function startStory(): void {
-  el('title-screen').style.display = 'none';
-  el('story-output').style.display = 'block';
+// ── Character generator ───────────────────────────────────────────────────────
+
+function showChargen(): void {
+  el('title-screen').style.display   = 'none';
+  el('chargen-screen').style.display = 'block';
+  chargen.init(startStoryWithStats);
+}
+
+function applyCharacterStats(charState: CharacterState): void {
+  if (!story) return;
+  const { koerper, geist, seele, schatten } = charState.stats;
+
+  story.variablesState['stat_koerper']  = koerper;
+  story.variablesState['stat_geist']    = geist;
+  story.variablesState['stat_seele']    = seele;
+  story.variablesState['stat_schatten'] = schatten;
+
+  // Seed initial path affinities from stat distribution (story choices will add to these)
+  story.variablesState['affinity_jaegerin']      = Math.floor((koerper + schatten) / 4);
+  story.variablesState['affinity_samtlaeuferin'] = Math.floor((geist + seele) / 4);
+  story.variablesState['affinity_vampirin']      = Math.floor(seele / 3);
+}
+
+function startStoryWithStats(charState: CharacterState): void {
+  el('chargen-screen').style.display  = 'none';
+  el('story-output').style.display    = 'block';
+  applyCharacterStats(charState);
   continueStory();
 }
 

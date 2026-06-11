@@ -2,7 +2,8 @@
 // Compiles src/ink/prologue.ink → src/runtime/prologue.json using inkjs.
 // Run with: npm run compile
 
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, mkdirSync } from 'fs';
+import { dirname } from 'path';
 import { createRequire } from 'module';
 import { Compiler } from 'inkjs/compiler/Compiler';
 
@@ -25,5 +26,6 @@ const compiler = new Compiler(source, {
 });
 
 const story = compiler.Compile();
+mkdirSync(dirname(OUTPUT), { recursive: true });
 writeFileSync(OUTPUT, story.ToJson(), 'utf8');
 console.log(`Compiled: ${INPUT} → ${OUTPUT}`);

@@ -6,6 +6,12 @@ INCLUDE zwirndl_conversation.ink
 INCLUDE mizzi_confession.ink
 INCLUDE siebte_tuer.ink
 
+// ── Hauptattribute (gesetzt durch Charaktergenerator vor Spielstart) ──────────
+VAR stat_koerper  = 2
+VAR stat_geist    = 2
+VAR stat_seele    = 2
+VAR stat_schatten = 2
+
 // ── Fertigkeiten ─────────────────────────────────────────────────────────────
 // Startwert 2 für alle. Pfadentwicklung verändert diese später.
 VAR skill_dame         = 2
