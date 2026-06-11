@@ -1,6 +1,6 @@
 import { Story } from 'inkjs';
 import { CharacterGenerator } from '../chargen/CharacterGenerator';
-import type { CharacterState } from '../types/game';
+import type { CharacterState, StatKey, StatDistribution } from '../types/game';
 
 const STORY_FILE = './prologue.json';
 
@@ -22,7 +22,21 @@ const CLUE_LABELS: Record<string, string> = {
   lisels_notiz:             'Liesels Notiz',
 };
 
+// Which stat governs each inner voice
+const VOICE_STATS: Record<string, StatKey> = {
+  die_ermittlerin: 'geist',
+  die_pedantin:    'geist',
+  die_dame:        'schatten',
+  die_gosse:       'koerper',
+  das_tierchen:    'koerper',
+  die_hungrige:    'seele',
+  die_tote:        'seele',
+};
+
+const MAX_VOICES_PER_BLOCK = 2;
+
 let story: Story | null = null;
+let characterStats: StatDistribution = { koerper: 2, geist: 2, seele: 2, schatten: 2 };
 let pendingClues: string[] = [];
 const discoveredClues: string[] = [];
 
@@ -34,6 +48,12 @@ function el<T extends HTMLElement>(id: string): T {
   const node = document.getElementById(id);
   if (!node) throw new Error(`Element #${id} not found`);
   return node as T;
+}
+
+// Score a voice line: higher stat + d6 roll = more likely to surface
+function scoreVoice(voiceKey: string): number {
+  const stat = VOICE_STATS[voiceKey] ?? 'geist';
+  return characterStats[stat] + Math.random() * 6;
 }
 
 // ── Journal ───────────────────────────────────────────────────────────────────
@@ -96,13 +116,13 @@ function showChargen(): void {
 function applyCharacterStats(charState: CharacterState): void {
   if (!story) return;
   const { koerper, geist, seele, schatten } = charState.stats;
+  characterStats = charState.stats;
 
   story.variablesState['stat_koerper']  = koerper;
   story.variablesState['stat_geist']    = geist;
   story.variablesState['stat_seele']    = seele;
   story.variablesState['stat_schatten'] = schatten;
 
-  // Seed initial path affinities from stat distribution (story choices will add to these)
   story.variablesState['affinity_jaegerin']      = Math.floor((koerper + schatten) / 4);
   story.variablesState['affinity_samtlaeuferin'] = Math.floor((geist + seele) / 4);
   story.variablesState['affinity_vampirin']      = Math.floor(seele / 3);
@@ -117,11 +137,35 @@ function startStoryWithStats(charState: CharacterState): void {
 
 // ── Story loop ────────────────────────────────────────────────────────────────
 
+interface VoiceCandidate {
+  para: HTMLElement;
+  voiceKey: string;
+  score: number;
+}
+
+// Flush a voice buffer: sort by score, keep top MAX_VOICES_PER_BLOCK, append in original order
+function flushVoices(buffer: VoiceCandidate[], output: HTMLElement): void {
+  if (buffer.length === 0) return;
+
+  const topKeys = new Set(
+    [...buffer]
+      .sort((a, b) => b.score - a.score)
+      .slice(0, MAX_VOICES_PER_BLOCK)
+      .map(v => v.voiceKey)
+  );
+
+  // Preserve original reading order for the winners
+  for (const v of buffer) {
+    if (topKeys.has(v.voiceKey)) output.appendChild(v.para);
+  }
+}
+
 function continueStory(): void {
   const output    = el('story-output');
   const choicesEl = el('choices-container');
 
   pendingClues = [];
+  const voiceBuffer: VoiceCandidate[] = [];
 
   while (story!.canContinue) {
     const rawText = (story!.Continue() ?? '').trim();
@@ -129,6 +173,13 @@ function continueStory(): void {
 
     if (!rawText) continue;
 
+    const isVoice     = tags.some(t => t.trim().startsWith(TAG_VOICE));
+    const isCompanion = tags.some(t => t.trim().startsWith(TAG_COMPANION));
+
+    // A non-voice paragraph breaks the current voice block → flush
+    if (!isVoice && !isCompanion) flushVoices(voiceBuffer, output), voiceBuffer.length = 0;
+
+    // Clues are always tracked (even on lines that may not be shown)
     tags.forEach(tag => {
       const t = tag.trim();
       if (t.startsWith(TAG_CLUE)) {
@@ -139,9 +190,20 @@ function continueStory(): void {
     });
 
     const para = buildParagraph(rawText, tags as string[], pendingClues);
-    if (para) output.appendChild(para);
     pendingClues = [];
+    if (!para) continue;
+
+    if (isVoice) {
+      const voiceTag = tags.find(t => t.trim().startsWith(TAG_VOICE));
+      const voiceKey = voiceTag ? voiceTag.trim().slice(TAG_VOICE.length).trim() : 'unknown';
+      voiceBuffer.push({ para, voiceKey, score: scoreVoice(voiceKey) });
+    } else {
+      output.appendChild(para);
+    }
   }
+
+  // Flush any remaining voice block at end of batch
+  flushVoices(voiceBuffer, output);
 
   output.scrollTop = output.scrollHeight;
 
