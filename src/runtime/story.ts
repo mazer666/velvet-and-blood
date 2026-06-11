@@ -22,7 +22,6 @@ const CLUE_LABELS: Record<string, string> = {
   lisels_notiz:             'Liesels Notiz',
 };
 
-// Which stat governs each inner voice
 const VOICE_STATS: Record<string, StatKey> = {
   die_ermittlerin: 'geist',
   die_pedantin:    'geist',
@@ -33,16 +32,16 @@ const VOICE_STATS: Record<string, StatKey> = {
   die_tote:        'seele',
 };
 
-// Score tie threshold: top two voices within this range both surface
-const TIE_THRESHOLD = 1.0;
-// Regular paragraphs shown per page (voice/companion lines don't count toward the limit)
-const PAGE_SIZE = 4;
+const TIE_THRESHOLD  = 1.0;
+const PAGE_SIZE      = 4;
+const MAX_HISTORY    = 25;
+const NOTES_STORAGE  = 'vab-manual-notes';
 
 let story: Story | null = null;
 let characterStats: StatDistribution = { koerper: 2, geist: 2, seele: 2, schatten: 2 };
 const discoveredClues: string[] = [];
-
 let pendingParagraphs: HTMLElement[] = [];
+const storyHistory: string[] = [];
 
 const chargen = new CharacterGenerator();
 
@@ -59,6 +58,52 @@ function scoreVoice(voiceKey: string): number {
   return characterStats[stat] + Math.random() * 6;
 }
 
+function scrollOutputToBottom(): void {
+  const output = el('story-output');
+  // Defer scroll until after browser has laid out new elements
+  requestAnimationFrame(() => { output.scrollTop = output.scrollHeight; });
+}
+
+// ── Notes ─────────────────────────────────────────────────────────────────────
+
+function addAutoNote(kind: 'choice' | 'clue', text: string): void {
+  const li = document.createElement('li');
+  li.className = `note-entry note-${kind}`;
+  li.textContent = text;
+  const list = el('notes-auto-list');
+  list.appendChild(li);
+  // Scroll notes list if the auto-tab is currently visible
+  const autoSection = document.getElementById('notes-auto-section');
+  if (autoSection && autoSection.style.display !== 'none') {
+    requestAnimationFrame(() => { list.scrollTop = list.scrollHeight; });
+  }
+}
+
+function initNotes(): void {
+  const switchTab = (active: 'auto' | 'manual') => {
+    const isAuto = active === 'auto';
+    el('notes-auto-section').style.display   = isAuto ? 'block' : 'none';
+    el('notes-manual-section').style.display = isAuto ? 'none'  : 'block';
+    el('notes-tab-auto').classList.toggle('active', isAuto);
+    el('notes-tab-manual').classList.toggle('active', !isAuto);
+  };
+
+  el('notes-tab-auto').addEventListener('click',   () => switchTab('auto'));
+  el('notes-tab-manual').addEventListener('click', () => switchTab('manual'));
+
+  const textarea = el<HTMLTextAreaElement>('notes-textarea');
+  textarea.value = localStorage.getItem(NOTES_STORAGE) ?? '';
+  textarea.addEventListener('input', () => {
+    localStorage.setItem(NOTES_STORAGE, textarea.value);
+  });
+
+  el('notes-btn').addEventListener('click',  () => el('notes-overlay').classList.add('open'));
+  el('notes-close').addEventListener('click', () => el('notes-overlay').classList.remove('open'));
+  el('notes-overlay').addEventListener('click', e => {
+    if (e.target === e.currentTarget) el('notes-overlay').classList.remove('open');
+  });
+}
+
 // ── Journal ───────────────────────────────────────────────────────────────────
 
 function journalAddClue(clueId: string): void {
@@ -70,24 +115,20 @@ function journalAddClue(clueId: string): void {
   el('journal-list').appendChild(li);
 
   el('journal-count').textContent = String(discoveredClues.length);
-  el('journal-toolbar').style.display = 'block';
+  el('journal-btn').style.display = 'inline-block';
+
+  addAutoNote('clue', '◆ ' + (CLUE_LABELS[clueId] ?? clueId));
 }
 
 function initJournal(): void {
-  el('journal-btn').addEventListener('click', () => {
-    el('journal-overlay').classList.add('open');
-  });
-  el('journal-close').addEventListener('click', () => {
-    el('journal-overlay').classList.remove('open');
-  });
+  el('journal-btn').addEventListener('click',  () => el('journal-overlay').classList.add('open'));
+  el('journal-close').addEventListener('click', () => el('journal-overlay').classList.remove('open'));
   el('journal-overlay').addEventListener('click', e => {
-    if (e.target === e.currentTarget) {
-      el('journal-overlay').classList.remove('open');
-    }
+    if (e.target === e.currentTarget) el('journal-overlay').classList.remove('open');
   });
 }
 
-// ── Init: load JSON, show start button ───────────────────────────────────────
+// ── Init ─────────────────────────────────────────────────────────────────────
 
 async function init(): Promise<void> {
   try {
@@ -101,6 +142,7 @@ async function init(): Promise<void> {
     startBtn.style.display = 'inline-block';
     startBtn.addEventListener('click', showChargen);
     initJournal();
+    initNotes();
   } catch (err) {
     el('loading').textContent =
       'Fehler: prologue.json nicht gefunden. Bitte zuerst "npm run compile" ausführen.';
@@ -108,7 +150,7 @@ async function init(): Promise<void> {
   }
 }
 
-// ── Character generator ───────────────────────────────────────────────────────
+// ── Chargen ───────────────────────────────────────────────────────────────────
 
 function showChargen(): void {
   el('title-screen').style.display   = 'none';
@@ -120,12 +162,10 @@ function applyCharacterStats(charState: CharacterState): void {
   if (!story) return;
   const { koerper, geist, seele, schatten } = charState.stats;
   characterStats = charState.stats;
-
   story.variablesState['stat_koerper']  = koerper;
   story.variablesState['stat_geist']    = geist;
   story.variablesState['stat_seele']    = seele;
   story.variablesState['stat_schatten'] = schatten;
-
   story.variablesState['affinity_jaegerin']      = Math.floor((koerper + schatten) / 4);
   story.variablesState['affinity_samtlaeuferin'] = Math.floor((geist + seele) / 4);
   story.variablesState['affinity_vampirin']      = Math.floor(seele / 3);
@@ -134,11 +174,12 @@ function applyCharacterStats(charState: CharacterState): void {
 function startStoryWithStats(charState: CharacterState): void {
   el('chargen-screen').style.display  = 'none';
   el('story-output').style.display    = 'block';
+  el('story-toolbar').style.display   = 'flex';
   applyCharacterStats(charState);
   continueStory();
 }
 
-// ── Story loop ────────────────────────────────────────────────────────────────
+// ── Voice probe ───────────────────────────────────────────────────────────────
 
 interface VoiceCandidate {
   para: HTMLElement;
@@ -149,19 +190,17 @@ interface VoiceCandidate {
 // Show 1 voice; show 2 only when the top two scores tie within TIE_THRESHOLD
 function flushVoicesToQueue(buffer: VoiceCandidate[]): void {
   if (buffer.length === 0) return;
-
   const sorted = [...buffer].sort((a, b) => b.score - a.score);
   const toShow = new Set([sorted[0].voiceKey]);
-
   if (sorted.length > 1 && sorted[0].score - sorted[1].score <= TIE_THRESHOLD) {
     toShow.add(sorted[1].voiceKey);
   }
-
-  // Preserve original reading order for the winners
   for (const v of buffer) {
     if (toShow.has(v.voiceKey)) pendingParagraphs.push(v.para);
   }
 }
+
+// ── Story loop ────────────────────────────────────────────────────────────────
 
 function continueStory(): void {
   pendingParagraphs = [];
@@ -171,19 +210,13 @@ function continueStory(): void {
   while (story!.canContinue) {
     const rawText = (story!.Continue() ?? '').trim();
     const tags    = story!.currentTags ?? [];
-
     if (!rawText) continue;
 
     const isVoice     = tags.some(t => t.trim().startsWith(TAG_VOICE));
     const isCompanion = tags.some(t => t.trim().startsWith(TAG_COMPANION));
 
-    // A non-voice paragraph breaks the current voice block → flush
-    if (!isVoice && !isCompanion) {
-      flushVoicesToQueue(voiceBuffer);
-      voiceBuffer.length = 0;
-    }
+    if (!isVoice && !isCompanion) { flushVoicesToQueue(voiceBuffer); voiceBuffer.length = 0; }
 
-    // Clues are always tracked (even on lines that may not be shown)
     tags.forEach(tag => {
       const t = tag.trim();
       if (t.startsWith(TAG_CLUE)) {
@@ -205,14 +238,11 @@ function continueStory(): void {
       pendingParagraphs.push(para);
     }
   }
-
-  // Flush any remaining voice block
   flushVoicesToQueue(voiceBuffer);
-
   renderPage();
 }
 
-// Show up to PAGE_SIZE regular paragraphs; then either a "Weiter" button or choices
+// Reveal up to PAGE_SIZE regular paragraphs; then Weiter button or choices
 function renderPage(): void {
   const output    = el('story-output');
   const choicesEl = el('choices-container');
@@ -225,12 +255,10 @@ function renderPage(): void {
       !para.classList.contains('voice-line') &&
       !para.classList.contains('companion-line') &&
       !para.classList.contains('companion-status')
-    ) {
-      shown++;
-    }
+    ) shown++;
   }
 
-  output.scrollTop = output.scrollHeight;
+  scrollOutputToBottom();
 
   if (pendingParagraphs.length > 0) {
     choicesEl.innerHTML = '';
@@ -247,8 +275,9 @@ function renderPage(): void {
     return;
   }
 
-  // All paragraphs shown — render choices (or end screen)
+  // All text visible — show choices or end screen
   choicesEl.innerHTML = '';
+
   if (story!.currentChoices.length > 0) {
     choicesEl.classList.remove('hidden');
     story!.currentChoices.forEach((choice, i) => {
@@ -256,6 +285,10 @@ function renderPage(): void {
       btn.className   = 'choice-btn';
       btn.textContent = choice.text;
       btn.addEventListener('click', () => {
+        // Save state for potential undo
+        storyHistory.push(story!.state.ToJson());
+        if (storyHistory.length > MAX_HISTORY) storyHistory.shift();
+        addAutoNote('choice', '→ ' + choice.text);
         choicesEl.classList.add('hidden');
         addDivider(output);
         story!.ChooseChoiceIndex(i);
@@ -264,9 +297,25 @@ function renderPage(): void {
       choicesEl.appendChild(btn);
     });
   } else {
+    // No choices: -> DONE or unexpected dead end
     choicesEl.classList.add('hidden');
     el('end-screen').style.display = 'block';
-    output.scrollTop = output.scrollHeight;
+    scrollOutputToBottom();
+    // Offer undo in case this was not the intended ending
+    if (storyHistory.length > 0) {
+      choicesEl.classList.remove('hidden');
+      const undoBtn = document.createElement('button');
+      undoBtn.className = 'choice-btn undo-btn';
+      undoBtn.textContent = '← Zurück zum letzten Entscheidungspunkt';
+      undoBtn.addEventListener('click', () => {
+        el('end-screen').style.display = 'none';
+        choicesEl.classList.add('hidden');
+        const prevState = storyHistory.pop()!;
+        story!.state.LoadJson(prevState);
+        continueStory();
+      });
+      choicesEl.appendChild(undoBtn);
+    }
   }
 }
 
@@ -275,7 +324,6 @@ function renderPage(): void {
 function buildParagraph(rawText: string, tags: string[], clues: string[]): HTMLElement | null {
   const isVoiceLine     = tags.some(t => t.trim().startsWith(TAG_VOICE));
   const isCompanionLine = tags.some(t => t.trim().startsWith(TAG_COMPANION));
-
   if (isCompanionLine && !rawText) return null;
 
   const para = document.createElement('p');

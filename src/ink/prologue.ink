@@ -147,7 +147,7 @@ Die Katze stößt etwas unter der Regentonne hervor. Ein Messingknopf rollt auf 
         ~ affinity_jaegerin++
     }
 * [Weitermachen.]
--> untersuchungsschleife
+- -> untersuchungsschleife
 
 
 // =============================================================================
