@@ -95,6 +95,47 @@
       opacity: 0.85;
     }
 
+    /* Skill-check badge on choices */
+    .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.28em;
+      font-family: var(--font-ui);
+      font-size: 0.68em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.12em 0.5em 0.14em;
+      border-radius: 2px;
+      margin-right: 0.55em;
+      vertical-align: middle;
+      opacity: 0.9;
+      transition: opacity 0.15s;
+    }
+
+    .choice-btn:hover .skill-badge,
+    .choice-btn:focus .skill-badge { opacity: 1; }
+
+    /* Per-stat colors */
+    .skill-badge-koerper  { border: 1px solid #a0302a; background: rgba(160, 48, 42, 0.12); }
+    .skill-badge-geist    { border: 1px solid #2a6a9a; background: rgba(42, 106, 154, 0.12); }
+    .skill-badge-seele    { border: 1px solid #2a8a5a; background: rgba(42, 138, 90, 0.12); }
+    .skill-badge-schatten { border: 1px solid #6a3a8a; background: rgba(106, 58, 138, 0.12); }
+
+    .skill-badge-koerper  .skill-name { color: #e05050; }
+    .skill-badge-geist    .skill-name { color: #5090d0; }
+    .skill-badge-seele    .skill-name { color: #50b870; }
+    .skill-badge-schatten .skill-name { color: #9060c0; }
+
+    .skill-sep {
+      color: var(--text-dim);
+      opacity: 0.5;
+      font-size: 0.85em;
+    }
+
+    .chance-good { color: #50b870; }
+    .chance-ok   { color: #c88030; }
+    .chance-bad  { color: #c04040; }
+
     /* Companion observation lines — distinct from inner voices */
     .companion-line {
       color: #b8c4b8;

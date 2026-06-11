@@ -73,19 +73,19 @@ Eine Katze sitzt auf einer Regentonne und betrachtet dich mit der Geduld einer B
 // Zwirndl erscheint nach 3 Hinweisen oder spätestens nach 12 Umrunden (kein Stillstand möglich)
 { clues_collected >= 3 || untersuchung_besuche > 12: -> zwirndl_eintritt }
 
-* { not bloodstain_examined } [Den Blutfleck untersuchen.]
+* { not bloodstain_examined } [<ermittlerin:5> Den Blutfleck untersuchen.]
     -> blutfleck_pruefen
 * { not pockets_searched }    [In den eigenen Taschen nach Hinweisen suchen.]
     -> taschen_durchsuchen
 * { not note_examined }       [Den verschmierten Lieferzettel an der Wand betrachten.]
     -> lieferzettel_pruefen
-* { not door_examined }       [Die Kellertür untersuchen.]
+* { not door_examined }       [<ermittlerin:6> Die Kellertür untersuchen.]
     -> kellertuer_pruefen
-*                             [Aufstehen und so tun, als sei dies eine gewählte gesellschaftliche Position.]
+*                             [<dame:6> Aufstehen und so tun, als sei dies eine gewählte gesellschaftliche Position.]
     -> aufstehen
-* { not reflection_seen }     [Das eigene Gesicht im Spiegelbild einer Fensterscheibe ansehen.]
+* { not reflection_seen }     [<tote:6> Das eigene Gesicht im Spiegelbild einer Fensterscheibe ansehen.]
     -> spiegelbild
-+ [Mizzi ansprechen, bevor sie dich offiziell bemerkt.]
++ [<gosse:6> Mizzi ansprechen, bevor sie dich offiziell bemerkt.]
     -> mizzi_ansprechen
 + [Die Katze ansprechen.]
     -> katze_ansprechen
@@ -126,7 +126,7 @@ Die Katze stößt etwas unter der Regentonne hervor. Ein Messingknopf rollt auf 
 -> untersuchungsschleife
 
 = blutfleck_tiefergraben
-* [Den Geruch einordnen — Nahrung, Warnung oder Einladung?]
+* [<hungrige:6> Den Geruch einordnen — Nahrung, Warnung oder Einladung?]
     ~ temp hw = RANDOM(1, 6) + skill_hungrige
     { hw >= 6:
         Warnung. Nicht Nahrung — der Geruch ist falsch. Zu kalt, zu intentional, wie eine Nachricht in einer Sprache, die du noch nicht weißt zu sprechen, aber erkennst, dass sie an dich gerichtet ist.
@@ -138,7 +138,7 @@ Die Katze stößt etwas unter der Regentonne hervor. Ein Messingknopf rollt auf 
         ~ affinity_vampirin++
         ~ affinity_samtlaeuferin++
     }
-* [Die Form untersuchen — warum ist er so ordentlich?]
+* [<pedantin:6> Die Form untersuchen — warum ist er so ordentlich?]
     ~ temp pw = RANDOM(1, 6) + skill_pedantin
     { pw >= 6:
         Kreise entstehen nicht von selbst. Es gibt keine Physik, die einen gleichmäßigen Kreis aus vergossenem Blut erzeugt. Ein perfekter Kreis erfordert Absicht, ein Werkzeug oder eine Eigenschaft des Blutes selbst, die dem Standardhandbuch widerspricht.

@@ -32,10 +32,34 @@ const VOICE_STATS: Record<string, StatKey> = {
   die_tote:        'seele',
 };
 
-const TIE_THRESHOLD  = 1.0;
-const PAGE_SIZE      = 4;
-const MAX_HISTORY    = 25;
-const NOTES_STORAGE  = 'vab-manual-notes';
+const TIE_THRESHOLD        = 1.0;
+const VOICE_PASS_THRESHOLD = 5.0;
+const PAGE_SIZE            = 4;
+const MAX_HISTORY          = 25;
+const NOTES_STORAGE        = 'vab-manual-notes';
+
+// Skill-check annotation in choice text: <skillname:difficulty>
+const CHECK_RE = /^<(\w+):(\d+)>\s*/;
+
+const SKILL_STAT: Record<string, StatKey> = {
+  dame:        'schatten',
+  ermittlerin: 'geist',
+  gosse:       'koerper',
+  hungrige:    'seele',
+  pedantin:    'geist',
+  tote:        'seele',
+  tierchen:    'koerper',
+};
+
+const SKILL_LABEL: Record<string, string> = {
+  dame:        'Die Dame',
+  ermittlerin: 'Ermittlerin',
+  gosse:       'Die Gosse',
+  hungrige:    'Die Hungrige',
+  pedantin:    'Die Pedantin',
+  tote:        'Die Tote',
+  tierchen:    'Das Tierchen',
+};
 
 let story: Story | null = null;
 let characterStats: StatDistribution = { koerper: 2, geist: 2, seele: 2, schatten: 2 };
@@ -187,17 +211,26 @@ interface VoiceCandidate {
   score: number;
 }
 
-// Show 1 voice; show 2 only when the top two scores tie within TIE_THRESHOLD
+// Only voices that passed their probe (score >= threshold) are shown.
+// Among survivors: show 1, or 2 when the top two tie within TIE_THRESHOLD.
 function flushVoicesToQueue(buffer: VoiceCandidate[]): void {
   if (buffer.length === 0) return;
-  const sorted = [...buffer].sort((a, b) => b.score - a.score);
+  const passed = buffer.filter(v => v.score >= VOICE_PASS_THRESHOLD);
+  if (passed.length === 0) return;
+  const sorted = [...passed].sort((a, b) => b.score - a.score);
   const toShow = new Set([sorted[0].voiceKey]);
   if (sorted.length > 1 && sorted[0].score - sorted[1].score <= TIE_THRESHOLD) {
     toShow.add(sorted[1].voiceKey);
   }
-  for (const v of buffer) {
+  for (const v of passed) {
     if (toShow.has(v.voiceKey)) pendingParagraphs.push(v.para);
   }
+}
+
+// Probability that RANDOM(1,6) + skill_X >= difficulty (Ink roll mechanic)
+function skillSuccessChance(skillName: string, difficulty: number): number {
+  const skillVal = (story?.variablesState['skill_' + skillName] as number) ?? 2;
+  return Math.max(0, Math.min(6, 7 - (difficulty - skillVal))) / 6;
 }
 
 // ── Story loop ────────────────────────────────────────────────────────────────
@@ -282,13 +315,47 @@ function renderPage(): void {
     choicesEl.classList.remove('hidden');
     story!.currentChoices.forEach((choice, i) => {
       const btn = document.createElement('button');
-      btn.className   = 'choice-btn';
-      btn.textContent = choice.text;
+      btn.className = 'choice-btn';
+
+      const checkMatch = choice.text.match(CHECK_RE);
+      const displayText = checkMatch ? choice.text.slice(checkMatch[0].length) : choice.text;
+
+      if (checkMatch) {
+        const skillName  = checkMatch[1];
+        const difficulty = parseInt(checkMatch[2], 10);
+        const stat       = SKILL_STAT[skillName] ?? 'geist';
+        const chance     = skillSuccessChance(skillName, difficulty);
+        const pct        = Math.round(chance * 100);
+        const chanceClass = pct >= 75 ? 'chance-good' : pct >= 40 ? 'chance-ok' : 'chance-bad';
+
+        const badge = document.createElement('span');
+        badge.className = `skill-badge skill-badge-${stat}`;
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className   = 'skill-name';
+        nameSpan.textContent = SKILL_LABEL[skillName] ?? skillName;
+
+        const sep = document.createElement('span');
+        sep.className   = 'skill-sep';
+        sep.textContent = '·';
+
+        const chanceSpan = document.createElement('span');
+        chanceSpan.className   = `skill-chance ${chanceClass}`;
+        chanceSpan.textContent = pct + '%';
+
+        badge.appendChild(nameSpan);
+        badge.appendChild(sep);
+        badge.appendChild(chanceSpan);
+        btn.appendChild(badge);
+        btn.appendChild(document.createTextNode(displayText));
+      } else {
+        btn.textContent = choice.text;
+      }
+
       btn.addEventListener('click', () => {
-        // Save state for potential undo
         storyHistory.push(story!.state.ToJson());
         if (storyHistory.length > MAX_HISTORY) storyHistory.shift();
-        addAutoNote('choice', '→ ' + choice.text);
+        addAutoNote('choice', '→ ' + displayText);
         choicesEl.classList.add('hidden');
         addDivider(output);
         story!.ChooseChoiceIndex(i);
