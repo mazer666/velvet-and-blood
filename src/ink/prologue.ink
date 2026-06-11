@@ -23,6 +23,7 @@ VAR skill_tote         = 1
 
 // ── Hinweise ──────────────────────────────────────────────────────────────────
 VAR clues_collected      = 0
+VAR untersuchung_besuche = 0
 VAR bloodstain_examined  = false
 VAR button_found         = false
 VAR note_examined        = false
@@ -68,7 +69,9 @@ Eine Katze sitzt auf einer Regentonne und betrachtet dich mit der Geduld einer B
 // =============================================================================
 === untersuchungsschleife ===
 
-{ clues_collected >= 3: -> zwirndl_eintritt }
+~ untersuchung_besuche++
+// Zwirndl erscheint nach 3 Hinweisen oder spätestens nach 12 Umrunden (kein Stillstand möglich)
+{ clues_collected >= 3 || untersuchung_besuche > 12: -> zwirndl_eintritt }
 
 * { not bloodstain_examined } [Den Blutfleck untersuchen.]
     -> blutfleck_pruefen
