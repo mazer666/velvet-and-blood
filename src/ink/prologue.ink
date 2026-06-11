@@ -41,6 +41,8 @@ VAR benedikt_bemerkt   = false
 VAR kastner_kommt      = false
 VAR mizzi_eindruck     = 0
 
+-> prologue
+
 // =============================================================================
 === prologue ===
 
