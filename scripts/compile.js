@@ -10,7 +10,7 @@ const require = createRequire(import.meta.url);
 const { PosixFileHandler } = require('inkjs/compiler/FileHandler/PosixFileHandler');
 
 const INPUT  = 'src/ink/prologue.ink';
-const OUTPUT = 'src/runtime/prologue.json';
+const OUTPUT = 'src/runtime/public/prologue.json';
 
 const source = readFileSync(INPUT, 'utf8');
 

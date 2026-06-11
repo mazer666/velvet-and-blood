@@ -1,16 +1,12 @@
-// story.js
-// Loads prologue.json (compiled Ink story) and drives the browser display.
-// Requires inkjs UMD loaded via <script> before this file.
+import { Story } from 'inkjs';
 
 const STORY_FILE = './prologue.json';
 
-// Tags emitted by the Ink story
 const TAG_VOICE     = 'voice:';
 const TAG_CLUE      = 'clue:';
 const TAG_COMPANION = 'companion:';
 
-// Clue labels shown as inline badges
-const CLUE_LABELS = {
+const CLUE_LABELS: Record<string, string> = {
   bloodstain:               'Blutfleck',
   brass_button:             'Messingknopf',
   delivery_note:            'Lieferzettel',
@@ -24,79 +20,87 @@ const CLUE_LABELS = {
   lisels_notiz:             'Liesels Notiz',
 };
 
-let story = null;
-let pendingClues = [];     // clues discovered in the current Continue() batch
-const discoveredClues = []; // persistent journal across the full playthrough
+let story: Story | null = null;
+let pendingClues: string[] = [];
+const discoveredClues: string[] = [];
+
+// ── Helpers ───────────────────────────────────────────────────────────────────
+
+function el<T extends HTMLElement>(id: string): T {
+  const node = document.getElementById(id);
+  if (!node) throw new Error(`Element #${id} not found`);
+  return node as T;
+}
 
 // ── Journal ───────────────────────────────────────────────────────────────────
 
-function journalAddClue(clueId) {
+function journalAddClue(clueId: string): void {
   if (discoveredClues.includes(clueId)) return;
   discoveredClues.push(clueId);
 
   const li = document.createElement('li');
-  li.textContent = CLUE_LABELS[clueId] || clueId;
-  document.getElementById('journal-list').appendChild(li);
+  li.textContent = CLUE_LABELS[clueId] ?? clueId;
+  el('journal-list').appendChild(li);
 
-  document.getElementById('journal-count').textContent = discoveredClues.length;
-  document.getElementById('journal-toolbar').style.display = 'block';
+  el('journal-count').textContent = String(discoveredClues.length);
+  el('journal-toolbar').style.display = 'block';
 }
 
-function initJournal() {
-  document.getElementById('journal-btn').addEventListener('click', () => {
-    document.getElementById('journal-overlay').classList.add('open');
+function initJournal(): void {
+  el('journal-btn').addEventListener('click', () => {
+    el('journal-overlay').classList.add('open');
   });
-  document.getElementById('journal-close').addEventListener('click', () => {
-    document.getElementById('journal-overlay').classList.remove('open');
+  el('journal-close').addEventListener('click', () => {
+    el('journal-overlay').classList.remove('open');
   });
-  document.getElementById('journal-overlay').addEventListener('click', e => {
+  el('journal-overlay').addEventListener('click', e => {
     if (e.target === e.currentTarget) {
-      document.getElementById('journal-overlay').classList.remove('open');
+      el('journal-overlay').classList.remove('open');
     }
   });
 }
 
 // ── Initialisation ────────────────────────────────────────────────────────────
 
-async function init() {
+async function init(): Promise<void> {
   try {
     const res = await fetch(STORY_FILE);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const json = await res.json();
-    story = new inkjs.Story(json);
-    document.getElementById('loading').style.display = 'none';
-    document.getElementById('start-btn').style.display = 'inline-block';
-    document.getElementById('start-btn').addEventListener('click', startStory);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const json = await res.json() as any;
+    story = new Story(json);
+    el('loading').style.display = 'none';
+    const startBtn = el<HTMLButtonElement>('start-btn');
+    startBtn.style.display = 'inline-block';
+    startBtn.addEventListener('click', startStory);
     initJournal();
   } catch (err) {
-    document.getElementById('loading').textContent =
+    el('loading').textContent =
       'Fehler: prologue.json nicht gefunden. Bitte zuerst "npm run compile" ausführen.';
     console.error(err);
   }
 }
 
-function startStory() {
-  document.getElementById('title-screen').style.display  = 'none';
-  document.getElementById('story-output').style.display  = 'block';
+function startStory(): void {
+  el('title-screen').style.display = 'none';
+  el('story-output').style.display = 'block';
   continueStory();
 }
 
 // ── Story loop ────────────────────────────────────────────────────────────────
 
-function continueStory() {
-  const output    = document.getElementById('story-output');
-  const choicesEl = document.getElementById('choices-container');
+function continueStory(): void {
+  const output    = el('story-output');
+  const choicesEl = el('choices-container');
 
   pendingClues = [];
 
-  // Consume all available text before showing choices
-  while (story.canContinue) {
-    const rawText = story.Continue().trim();
-    const tags    = story.currentTags;
+  while (story!.canContinue) {
+    const rawText = (story!.Continue() ?? '').trim();
+    const tags    = story!.currentTags ?? [];
 
     if (!rawText) continue;
 
-    // Collect clue tags from this line
     tags.forEach(tag => {
       const t = tag.trim();
       if (t.startsWith(TAG_CLUE)) {
@@ -106,51 +110,47 @@ function continueStory() {
       }
     });
 
-    // Build paragraph element
-    const para = buildParagraph(rawText, tags, pendingClues);
-    output.appendChild(para);
-    pendingClues = [];  // each paragraph owns its clues
+    const para = buildParagraph(rawText, tags as string[], pendingClues);
+    if (para) output.appendChild(para);
+    pendingClues = [];
   }
 
   output.scrollTop = output.scrollHeight;
 
-  // Show choices or end screen
   choicesEl.innerHTML = '';
-  if (story.currentChoices.length > 0) {
+  if (story!.currentChoices.length > 0) {
     choicesEl.classList.remove('hidden');
-    story.currentChoices.forEach((choice, i) => {
+    story!.currentChoices.forEach((choice, i) => {
       const btn = document.createElement('button');
       btn.className   = 'choice-btn';
       btn.textContent = choice.text;
       btn.addEventListener('click', () => {
         choicesEl.classList.add('hidden');
         addDivider(output);
-        story.ChooseChoiceIndex(i);
+        story!.ChooseChoiceIndex(i);
         continueStory();
       });
       choicesEl.appendChild(btn);
     });
   } else {
     choicesEl.classList.add('hidden');
-    document.getElementById('end-screen').style.display = 'block';
+    el('end-screen').style.display = 'block';
     output.scrollTop = output.scrollHeight;
   }
 }
 
 // ── Paragraph builder ─────────────────────────────────────────────────────────
 
-function buildParagraph(rawText, tags, clues) {
+function buildParagraph(rawText: string, tags: string[], clues: string[]): HTMLElement | null {
   const isVoiceLine     = tags.some(t => t.trim().startsWith(TAG_VOICE));
   const isCompanionLine = tags.some(t => t.trim().startsWith(TAG_COMPANION));
 
-  // Companion status notification (no visible text, just a state marker)
   if (isCompanionLine && !rawText) return null;
 
   const para = document.createElement('p');
   para.className = 'story-paragraph';
 
   if (isVoiceLine) {
-    // Inner voice: italic, muted, accent border
     para.classList.add('voice-line');
     const voiceMatch = rawText.match(/^\[([^\]]+)\]\s*/);
     if (voiceMatch) {
@@ -163,7 +163,6 @@ function buildParagraph(rawText, tags, clues) {
       para.textContent = rawText;
     }
   } else if (isCompanionLine) {
-    // Companion observation: similar to voice line but visually distinct
     para.classList.add('companion-line');
     const match = rawText.match(/^\[([^\]]+)\]\s*/);
     if (match) {
@@ -173,7 +172,6 @@ function buildParagraph(rawText, tags, clues) {
       para.appendChild(labelSpan);
       para.appendChild(document.createTextNode(rawText.slice(match[0].length)));
     } else {
-      // Status line like "[Frau Zwirndl ist jetzt in der Nähe...]"
       const bracketMatch = rawText.match(/^\[([^\]]+)\]$/);
       if (bracketMatch) {
         para.classList.add('companion-status');
@@ -186,23 +184,22 @@ function buildParagraph(rawText, tags, clues) {
     para.textContent = rawText;
   }
 
-  // Append clue badges
   clues.forEach(clueId => {
     const badge = document.createElement('span');
     badge.className   = 'clue-found';
-    badge.textContent = '+ ' + (CLUE_LABELS[clueId] || clueId);
+    badge.textContent = '+ ' + (CLUE_LABELS[clueId] ?? clueId);
     para.appendChild(badge);
   });
 
   return para;
 }
 
-function addDivider(container) {
+function addDivider(container: HTMLElement): void {
   const hr = document.createElement('hr');
   hr.className = 'story-divider';
   container.appendChild(hr);
 }
 
-// ── Start ─────────────────────────────────────────────────────────────────────
+// ── Boot ──────────────────────────────────────────────────────────────────────
 
 init();

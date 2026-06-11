@@ -5,14 +5,18 @@
   "type": "module",
   "scripts": {
     "compile": "node scripts/compile.js",
-    "dev": "npx serve src/runtime -p 3000 --no-clipboard",
-    "build": "npm run compile"
+    "dev": "npm run compile && vite",
+    "build": "npm run compile && vite build",
+    "deploy": "npm run build && gh-pages -d dist",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "inkjs": "^2.3.0"
   },
   "devDependencies": {
-    "serve": "^14.2.4"
+    "gh-pages": "^6.3.0",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
   },
   "engines": {
     "node": ">=18.0.0"

@@ -55,4 +55,4 @@ playtest-saves/
 local-data/
 
 # Generated story build (run: npm run compile)
-src/runtime/prologue.json
+src/runtime/public/
