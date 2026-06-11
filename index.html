@@ -41,7 +41,6 @@
       flex: 1;
       overflow-y: auto;
       padding: 2.5rem 0 1rem;
-      scroll-behavior: smooth;
     }
 
     /* Hide scrollbar but keep functionality */
@@ -240,14 +239,16 @@
       font-size: 0.85rem;
     }
 
-    /* Journal toggle button — appears once first clue is found */
-    #journal-toolbar {
+    /* Story toolbar — shown once the story starts */
+    #story-toolbar {
       display: none;
-      text-align: right;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1rem;
       padding: 0.4rem 0 0.1rem;
     }
 
-    #journal-btn {
+    .toolbar-btn {
       background: none;
       border: none;
       color: var(--text-dim);
@@ -260,12 +261,150 @@
       transition: color 0.15s;
     }
 
-    #journal-btn:hover { color: var(--accent); }
+    .toolbar-btn:hover { color: var(--accent); }
 
     #journal-count {
       color: var(--accent-dim);
       font-variant-numeric: tabular-nums;
     }
+
+    /* Notes overlay */
+    #notes-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(22, 18, 15, 0.82);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    #notes-overlay.open { opacity: 1; pointer-events: all; }
+
+    #notes-panel {
+      background: var(--bg-panel);
+      border-top: 1px solid var(--border);
+      width: 100%;
+      max-width: 720px;
+      padding: 1.5rem 1.5rem 2rem;
+      max-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      transform: translateY(12px);
+      transition: transform 0.2s ease;
+    }
+
+    #notes-overlay.open #notes-panel { transform: translateY(0); }
+
+    #notes-panel-title {
+      font-family: var(--font-ui);
+      font-size: 0.7em;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .notes-tabs {
+      display: flex;
+      gap: 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .notes-tab {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--text-dim);
+      font-family: var(--font-ui);
+      font-size: 0.72em;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      cursor: pointer;
+      padding: 0.4em 1em 0.5em;
+      margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .notes-tab:hover { color: var(--text); }
+    .notes-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+    #notes-auto-section {
+      flex: 1;
+      overflow-y: auto;
+      min-height: 0;
+    }
+
+    #notes-auto-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .note-entry {
+      font-family: var(--font-ui);
+      font-size: 0.82em;
+      padding: 0.35em 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .note-choice { color: var(--text-dim); }
+    .note-clue   { color: var(--accent); }
+
+    #notes-manual-section {
+      flex: 1;
+      display: none;
+      min-height: 0;
+    }
+
+    #notes-textarea {
+      width: 100%;
+      height: 100%;
+      min-height: 180px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.9em;
+      line-height: 1.65;
+      padding: 0.7em 0.9em;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+
+    #notes-textarea:focus { border-color: var(--accent-dim); }
+    #notes-textarea::placeholder { color: var(--text-dim); opacity: 0.5; }
+
+    #notes-close {
+      display: block;
+      width: 100%;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-dim);
+      font-family: var(--font-ui);
+      font-size: 0.72em;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.6em;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+      flex-shrink: 0;
+    }
+
+    #notes-close:hover { border-color: var(--accent-dim); color: var(--text); }
+
+    /* Undo button at story end */
+    .undo-btn {
+      margin-top: 0.8rem;
+      color: var(--text-dim);
+      font-size: 0.82em;
+      opacity: 0.7;
+    }
+    .undo-btn:hover { opacity: 1; }
 
     /* Journal overlay */
     #journal-overlay {
@@ -542,7 +681,7 @@
     #chargen-confirm:hover:not(:disabled) { border-color: var(--accent); color: var(--text); }
     #chargen-confirm:disabled { opacity: 0.35; cursor: not-allowed; }
   </style>
-  <script type="module" crossorigin src="./assets/index-tRBV6APk.js"></script>
+  <script type="module" crossorigin src="./assets/index-BVMpN3R4.js"></script>
 </head>
 <body>
 
@@ -661,7 +800,10 @@
   </div>
 
   <div id="story-output" style="display:none"></div>
-  <div id="journal-toolbar"><button id="journal-btn">Hinweise &thinsp;<span id="journal-count">0</span></button></div>
+  <div id="story-toolbar" style="display:none">
+    <button class="toolbar-btn" id="notes-btn">Notizen</button>
+    <button class="toolbar-btn" id="journal-btn" style="display:none">Hinweise &thinsp;<span id="journal-count">0</span></button>
+  </div>
   <div id="choices-container" class="hidden"></div>
   <div id="end-screen">— Ende des ersten Akts —</div>
 
@@ -672,6 +814,23 @@
     <div id="journal-title">Gefundene Hinweise</div>
     <ul id="journal-list"></ul>
     <button id="journal-close">Schließen</button>
+  </div>
+</div>
+
+<div id="notes-overlay">
+  <div id="notes-panel">
+    <div id="notes-panel-title">Notizzettel</div>
+    <div class="notes-tabs">
+      <button class="notes-tab active" id="notes-tab-auto">Automatisch</button>
+      <button class="notes-tab" id="notes-tab-manual">Eigene Notizen</button>
+    </div>
+    <div id="notes-auto-section">
+      <ul id="notes-auto-list"></ul>
+    </div>
+    <div id="notes-manual-section">
+      <textarea id="notes-textarea" placeholder="Halte hier fest, was dir wichtig erscheint…"></textarea>
+    </div>
+    <button id="notes-close">Schließen</button>
   </div>
 </div>
 
