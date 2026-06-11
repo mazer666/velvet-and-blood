@@ -33,12 +33,16 @@ const VOICE_STATS: Record<string, StatKey> = {
   die_tote:        'seele',
 };
 
-const MAX_VOICES_PER_BLOCK = 2;
+// Score tie threshold: top two voices within this range both surface
+const TIE_THRESHOLD = 1.0;
+// Regular paragraphs shown per page (voice/companion lines don't count toward the limit)
+const PAGE_SIZE = 4;
 
 let story: Story | null = null;
 let characterStats: StatDistribution = { koerper: 2, geist: 2, seele: 2, schatten: 2 };
-let pendingClues: string[] = [];
 const discoveredClues: string[] = [];
+
+let pendingParagraphs: HTMLElement[] = [];
 
 const chargen = new CharacterGenerator();
 
@@ -50,7 +54,6 @@ function el<T extends HTMLElement>(id: string): T {
   return node as T;
 }
 
-// Score a voice line: higher stat + d6 roll = more likely to surface
 function scoreVoice(voiceKey: string): number {
   const stat = VOICE_STATS[voiceKey] ?? 'geist';
   return characterStats[stat] + Math.random() * 6;
@@ -143,29 +146,27 @@ interface VoiceCandidate {
   score: number;
 }
 
-// Flush a voice buffer: sort by score, keep top MAX_VOICES_PER_BLOCK, append in original order
-function flushVoices(buffer: VoiceCandidate[], output: HTMLElement): void {
+// Show 1 voice; show 2 only when the top two scores tie within TIE_THRESHOLD
+function flushVoicesToQueue(buffer: VoiceCandidate[]): void {
   if (buffer.length === 0) return;
 
-  const topKeys = new Set(
-    [...buffer]
-      .sort((a, b) => b.score - a.score)
-      .slice(0, MAX_VOICES_PER_BLOCK)
-      .map(v => v.voiceKey)
-  );
+  const sorted = [...buffer].sort((a, b) => b.score - a.score);
+  const toShow = new Set([sorted[0].voiceKey]);
+
+  if (sorted.length > 1 && sorted[0].score - sorted[1].score <= TIE_THRESHOLD) {
+    toShow.add(sorted[1].voiceKey);
+  }
 
   // Preserve original reading order for the winners
   for (const v of buffer) {
-    if (topKeys.has(v.voiceKey)) output.appendChild(v.para);
+    if (toShow.has(v.voiceKey)) pendingParagraphs.push(v.para);
   }
 }
 
 function continueStory(): void {
-  const output    = el('story-output');
-  const choicesEl = el('choices-container');
-
-  pendingClues = [];
+  pendingParagraphs = [];
   const voiceBuffer: VoiceCandidate[] = [];
+  let pendingClues: string[] = [];
 
   while (story!.canContinue) {
     const rawText = (story!.Continue() ?? '').trim();
@@ -177,7 +178,10 @@ function continueStory(): void {
     const isCompanion = tags.some(t => t.trim().startsWith(TAG_COMPANION));
 
     // A non-voice paragraph breaks the current voice block → flush
-    if (!isVoice && !isCompanion) flushVoices(voiceBuffer, output), voiceBuffer.length = 0;
+    if (!isVoice && !isCompanion) {
+      flushVoicesToQueue(voiceBuffer);
+      voiceBuffer.length = 0;
+    }
 
     // Clues are always tracked (even on lines that may not be shown)
     tags.forEach(tag => {
@@ -198,15 +202,52 @@ function continueStory(): void {
       const voiceKey = voiceTag ? voiceTag.trim().slice(TAG_VOICE.length).trim() : 'unknown';
       voiceBuffer.push({ para, voiceKey, score: scoreVoice(voiceKey) });
     } else {
-      output.appendChild(para);
+      pendingParagraphs.push(para);
     }
   }
 
-  // Flush any remaining voice block at end of batch
-  flushVoices(voiceBuffer, output);
+  // Flush any remaining voice block
+  flushVoicesToQueue(voiceBuffer);
+
+  renderPage();
+}
+
+// Show up to PAGE_SIZE regular paragraphs; then either a "Weiter" button or choices
+function renderPage(): void {
+  const output    = el('story-output');
+  const choicesEl = el('choices-container');
+
+  let shown = 0;
+  while (pendingParagraphs.length > 0 && shown < PAGE_SIZE) {
+    const para = pendingParagraphs.shift()!;
+    output.appendChild(para);
+    if (
+      !para.classList.contains('voice-line') &&
+      !para.classList.contains('companion-line') &&
+      !para.classList.contains('companion-status')
+    ) {
+      shown++;
+    }
+  }
 
   output.scrollTop = output.scrollHeight;
 
+  if (pendingParagraphs.length > 0) {
+    choicesEl.innerHTML = '';
+    choicesEl.classList.remove('hidden');
+    const btn = document.createElement('button');
+    btn.className = 'weiter-btn';
+    btn.textContent = 'Weiter';
+    btn.addEventListener('click', () => {
+      choicesEl.innerHTML = '';
+      choicesEl.classList.add('hidden');
+      renderPage();
+    });
+    choicesEl.appendChild(btn);
+    return;
+  }
+
+  // All paragraphs shown — render choices (or end screen)
   choicesEl.innerHTML = '';
   if (story!.currentChoices.length > 0) {
     choicesEl.classList.remove('hidden');
